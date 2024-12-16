@@ -25,7 +25,7 @@ from nltk.corpus import words
 nltk.download('words')
 
 class SpellChecker:
-
+    # Constructor
     def __init__(self):
         self.root = tk.Tk()
         self.root.geometry("600x500")
@@ -39,20 +39,25 @@ class SpellChecker:
 
         self.root.mainloop()
 
+    # Function to check the spelling
     def check(self, event):
         content = self.text.get("1.0", tk.END)
         space_count = content.count(" ")
 
+        # Check if the number of spaces has changed
         if space_count != self.old_spaces:
             self.old_spaces = space_count
 
+            # Clear all the tags
             for tag in self.text.tag_names():
                 self.text.tag_delete(tag)
 
             for word in content.split(" "):
+                # Check if the word is not in the dictionary
                 if re.sub(r"[^\w]", "", word.lower()) not in words.words():
                     position = content.find(word)
                     self.text.tag_add(word, f"1.{position}", f"1.{position + len(word)}")
                     self.text.tag_config(word, foreground="red")
 
+# Main function
 SpellChecker()
