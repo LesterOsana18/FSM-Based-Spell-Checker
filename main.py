@@ -1,4 +1,16 @@
- # Regular expression library
+# Description: This file contains the main code for the FSM-based spell checker.
+# Note: This code is based on the tutorial at https://youtu.be/_nkQd9SyEpw?si=sFDhffhvPGmSAKXu.
+
+'''
+Please install the following library before running the code:
+- For the Natural Language Toolkit library, go to command prompt and type the following command:
+
+    pip install nltk
+    
+- Wait for the installation to finish and then you will be able to run the code.
+'''
+
+# Regular expression library
 import re
 
 # Tkinter library
