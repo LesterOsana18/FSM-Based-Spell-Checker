@@ -30,6 +30,8 @@ class State:
     def execute(self, word):
         pass
 
+## ============================================================ ##
+
 # FSM States
 class StartState(State):
     # Execute method
@@ -61,6 +63,8 @@ class ValidWordState(State):
 class InvalidWordState(State):
     def execute(self, word):
         print(f"State: Invalid | Word: {word}")
+
+## ============================================================ ##
 
 # FSM Class
 class FSM:
@@ -111,6 +115,8 @@ class FSM:
         else:
             print("Error: Text widget is not set", flush=True)
 
+## ============================================================ ##
+
 # Main Application
 class SpellChecker:
     # Constructor
@@ -158,6 +164,8 @@ class SpellChecker:
                         self.text.tag_config(tag_name, foreground="red")
                     self.fsm.execute(word)
                 current_index += len(word) + 1  # +1 for the space
+
+## ============================================================ ##
 
 # Run the application
 if __name__ == "__main__":
