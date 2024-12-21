@@ -11,7 +11,7 @@ Error 1: Repeated print statements
 
      Final Output in the Console:  Invalid, Invalid, Valid, Invalid, Valid, Invalid
 
-> Reason: 
+> (Possible) Reason: 
      The FSM resets to the start state after every word, meaning, it reprocesses the words,
           thus why it reprints previous resulting states.
 
@@ -19,3 +19,41 @@ Error 1: Repeated print statements
 
 > Possible Solution: 
      Find a way to track and skip processed words.
+
+Error 2: Valid words tagged as `Invalid` (Some forms of verbs or plural nouns are tagged as `Invalid`)
+> Scenario: 
+     Input: Jump
+     Resulting State: Valid
+
+     Input: Jumps
+     Resulting State: Invalid
+
+     Input: Jumping
+     Resulting State: Invalid
+
+     Input: Jumped
+     Resulting State: Invalid
+
+     Input: Run
+     Resulting State: Valid
+
+     Input: Running 
+     Resulting State: Valid
+
+     Input: Runs
+     Resulting State: Invalid
+
+     Input: Ran
+     Resulting State: Valid
+
+> (Possible) Reason: 
+     Part of the limitations of the word list itself. (NLKT prolly doesn't cover a range of inflected words.) 
+
+> Possible Solution:
+     Not sure if we're going to encounter the same issue if we switch to Tagalog Dictionary (but most likely, if we can't find a comprehensive tagalog word list).
+          Not sure din if we're going to deal with it, if ever. 
+          ++ Refer to Kyrelle's comment on the scope and limitations (pg. 5, https://docs.google.com/document/d/1S9fxzwxTJWsBQdqf16B5bnyN89oqwDOck3RtadYaaYg/edit?tab=t.0 )
+
+     In such case, we can find/look for a comprehensive pre-defined tagalog dictionary/word list containing
+          the root words and the common conjugations or forms of the words.
+
