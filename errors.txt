@@ -1,0 +1,21 @@
+Error 1: Repeated print statements
+> Scenario:
+     Input 1: quikc 
+     Output: Invalid
+
+     Input 2: Boy
+     Output: Invalid, Valid
+
+     Input 3: liek
+     Output: Invalid, Invalid, Valid, Invalid
+
+     Final Output in the Console:  Invalid, Invalid, Valid, Invalid, Valid, Invalid
+
+> Reason: 
+     The FSM resets to the start state after every word, meaning, it reprocesses the words,
+          thus why it reprints previous resulting states.
+
+     There is no mechanism to skip the processed words.
+
+> Possible Solution: 
+     Find a way to track and skip processed words.
