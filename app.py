@@ -140,30 +140,54 @@ class SpellChecker:
 
     # Check method
     def check(self, event):
-        # Get the content of the text widget
-        content = self.text.get("1.0", tk.END)
-        space_count = content.count(" ")
-        
-        # Check if the number of spaces has changed
-        if space_count != self.old_spaces:
-            self.old_spaces = space_count
-            for tag in self.text.tag_names():
-                self.text.tag_delete(tag)
+        # Get the current content of the text widget
+        content = self.text.get("1.0", tk.END).strip()
 
-            # Iterate over words in the text
-            current_index = 0
-            for word in content.split(" "):
+        # Detect paste: Check if multiple spaces are added at once
+        if event.keysym == "Control_L" or len(content.split()) > len(self.processed_words):
+            self.processed_words.clear()  # Clear previously processed words
+            for word in content.split():
                 clean_word = re.sub(r"[^\w]", "", word.lower())
-                if clean_word:
-                    if clean_word not in word_set:
-                        position = content.find(word, current_index)
-                        start_pos = f"1.{position}"
-                        end_pos = f"1.{position + len(word)}"
-                        tag_name = f"invalid_{position}"
-                        self.text.tag_add(tag_name, start_pos, end_pos)
-                        self.text.tag_config(tag_name, foreground="red")
-                    self.fsm.execute(word)
-                current_index += len(word) + 1  # +1 for the space
+                start_pos = content.find(word)
+                end_pos = start_pos + len(word)
+
+                # Highlight invalid words
+                if clean_word not in word_set:
+                    self.text.tag_add(f"invalid_{start_pos}", f"1.{start_pos}", f"1.{end_pos}")
+                    self.text.tag_config(f"invalid_{start_pos}", foreground="red")
+
+                # Execute FSM for each word
+                self.fsm.execute(word)
+
+            # Update processed words
+            self.processed_words = set(content.split())
+            return
+
+        # Handle typing: Trigger validation only when space or Enter is pressed
+        if event.keysym not in ("space", "Return"):
+            return
+
+        # Validate the last word typed
+        words = content.split()
+        if not words:
+            return  # No words to process
+        last_word = words[-1]  # Get the last word typed
+
+        # Clean the word for validation
+        clean_word = re.sub(r"[^\w]", "", last_word.lower())
+        start_pos = content.rfind(last_word)
+        end_pos = start_pos + len(last_word)
+
+        # Highlight invalid words
+        if clean_word not in word_set:
+            self.text.tag_add(f"invalid_{start_pos}", f"1.{start_pos}", f"1.{end_pos}")
+            self.text.tag_config(f"invalid_{start_pos}", foreground="red")
+
+        # Execute FSM for the last word
+        self.fsm.execute(last_word)
+
+        # Add last word to processed words
+        self.processed_words.add(last_word)
 
 ## ============================================================ ##
 
