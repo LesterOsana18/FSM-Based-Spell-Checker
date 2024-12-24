@@ -57,3 +57,13 @@ Error 2: Valid words tagged as `Invalid` (Some forms of verbs or plural nouns ar
      In such case, we can find/look for a comprehensive pre-defined tagalog dictionary/word list containing
           the root words and the common conjugations or forms of the words.
 
+--- Lester's Notes / 2024-12-25 / AS OF 6:35 AM ---
+1. Fixed Error 1 where the print statements are doubled if the text is pasted on the text widget.
+   SOLUTION: I encountered a lot of different errors while trying to solve the root problem. Had to think of many different ways to bypass the error but to no avail.
+   Changed my tactic and thought of another way to ensure proper usage of the application. Further details will be discussed on the next synchronous meeting with the team.
+
+2. Haven't solved the print statement issue yet where the actual words which are tagged valid or invalid displays on the terminal itself together with its transition states.
+   TARGET DATE: Hopefully I can solve this one during or after December 26, before the team conducts a meeting again.
+
+P.S These are rough descriptions only of what I've encountered during the debugging process. Took me 6 long hours to be able to make things work with the first error. T___T
+    Will share all the details to the team next meeting! - Lester, tired already.
