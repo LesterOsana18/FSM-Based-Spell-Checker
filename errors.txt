@@ -67,3 +67,6 @@ Error 2: Valid words tagged as `Invalid` (Some forms of verbs or plural nouns ar
 
 P.S These are rough descriptions only of what I've encountered during the debugging process. Took me 6 long hours to be able to make things work with the first error. T___T
     Will share all the details to the team next meeting! - Lester, tired already.
+
+[EDIT] Another thing pala, as you can see, another file has been added to our repository. I wanted to make a new one so I can get a fresh start sa new implementation. Please take the time to look at it.
+       Was so frustrated with the app.py file that I had to move on to another file. LMAO HASHAHAHASHAHASHA (bro was traumatized!)~
