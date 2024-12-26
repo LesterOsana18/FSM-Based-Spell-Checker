@@ -56,11 +56,11 @@ class StartState(State):
     
 class ValidWordState(State):
     def execute(self, word):
-        print(f"State: Valid | Word: {word}") # TODO: Implement this print statement into the output
+        print(f"State: Valid | Word: {word}")
 
 class InvalidWordState(State):
     def execute(self, word):
-        print(f"State: Invalid | Word: {word}") # TODO: Implement this print statement into the output
+        print(f"State: Invalid | Word: {word}")
 
 ## ============================================================ ## FSM CLASS ## ============================================================ ##
 class FSM:
