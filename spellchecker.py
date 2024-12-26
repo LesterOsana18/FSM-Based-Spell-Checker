@@ -35,19 +35,20 @@ class StartState(State):
     def execute(self, word):
         print("\n[TRANSITION]: Start -> Validating")
         clean_word = re.sub(r"[^\w]", "", word.lower())
+
         if clean_word in word_set:
             print("[TRANSITION]: Validating -> Valid")
             try:
                 # Add preconditions or additional checks here
                 if self.can_transition_to_valid(clean_word):
-                    self.fsm.transition("valid")
+                    self.fsm.transition("valid", word)  # Pass the word to transition
                 else:
                     print("Preconditions not met for transition to 'valid'")
             except Exception as e:
                 logging.error(f"Error during transition to 'valid': {e}")
         else:
             print("[TRANSITION]: Validating -> Invalid")
-            self.fsm.transition("invalid")
+            self.fsm.transition("invalid", word)  # Pass the word to transition
 
     # Additional checks method
     def can_transition_to_valid(self, word):
@@ -76,11 +77,12 @@ class FSM:
         self.text_widget = None 
 
     # Transition method
-    def transition(self, state_name):
+    def transition(self, state_name, word=None):
         if state_name in self.states:
             # Suppress the "Switching to State: Start" message
-            if state_name != "start":
+            if state_name != "start" and word:
                 print(f"[RESULTING STATE]: {state_name.capitalize()}", flush=True)
+                print(f"[WORD]: {word}", flush=True)
             self.current_state = self.states[state_name]
         else:
             # Print error message if state does not exist
