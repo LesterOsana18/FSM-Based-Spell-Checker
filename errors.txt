@@ -70,3 +70,9 @@ P.S These are rough descriptions only of what I've encountered during the debugg
 
 [EDIT] Another thing pala, as you can see, another file has been added to our repository. I wanted to make a new one so I can get a fresh start sa new implementation. Please take the time to look at it.
        Was so frustrated with the app.py file that I had to move on to another file. LMAO HASHAHAHASHAHASHA (bro was traumatized!)~
+
+--- Lester's Notes / 2024-12-27 / AS OF 12:21 AM ---
+1. I already implemented the feature we talked about last meeting. You can now see the specific word that has been tagged either valid or invalid. 
+
+2. Need to have a meeting with the team so we can discuss the next step of our plan.
+   I need to explain a lot of things since there were numerous changes made on the implementation of the working code. You'll see it once you try the program.
