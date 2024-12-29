@@ -76,3 +76,15 @@ P.S These are rough descriptions only of what I've encountered during the debugg
 
 2. Need to have a meeting with the team so we can discuss the next step of our plan.
    I need to explain a lot of things since there were numerous changes made on the implementation of the working code. You'll see it once you try the program.
+
+--- New Issues: Tagalog Dictionary Implementation / 2024-12-29 ---
+1. [INITIAL] ilipino Dictionary Reference: https://archive.org/details/350306621filipinodictionary/page/n11/mode/2up  
+     Issue: Has too many words, would require arduous labor to transfer to the filipino_dixt.text
+     Possible Solution:
+     - Filter out the reference and only choose commonly used words.
+     - Find another source with fewer and more common words.
+
+2. Filipino words with hypens are not read by the program as valid as our program ignores punctations.
+     Example: mag-abante, mag-abay, ipang-abot, etc.
+
+3. Words identified as invalid does not fully turn back into black after being edited by the user.
