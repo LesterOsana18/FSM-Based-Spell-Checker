@@ -9,6 +9,9 @@ from tkinter.scrolledtext import ScrolledText
 # Logging module
 import logging
 
+# os module to ensure that the program can access the filipino_dict.txt file
+import os
+
 # Storing the file path of the filipino words list
 file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "filipino_dict.txt")
 
