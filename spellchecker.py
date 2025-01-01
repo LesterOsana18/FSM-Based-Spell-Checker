@@ -4,20 +4,25 @@ import re
 
 # Tkinter module  
 import tkinter as tk 
-from tkinter.scrolledtext import ScrolledText
-
-# Natural Language Toolkit module
-import nltk
-from nltk.corpus import words
-
-# Download NLTK word list
-nltk.download('words')
-
-# Optimize word lookup
-word_set = set(words.words()) 
+from tkinter.scrolledtext import ScrolledText 
 
 # Logging module
 import logging
+
+# Storing the file path of the filipino words list
+file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "filipino_dict.txt")
+
+# Loading the file
+def load_filipino_word_list(file_path):
+    try:
+        with open(file_path, "r", encoding="utf-8") as file:
+            return set(file.read().splitlines())
+    except FileNotFoundError:
+        print(f"File '{file_path}' not found. Using an empty word set.")
+        return set()
+
+# Setting word_set as the Filipino word list
+word_set = load_filipino_word_list(file_path)
 
 ## ============================================================ ## FSM STATE BASE CLASS ## ============================================================ ##
 class State:
