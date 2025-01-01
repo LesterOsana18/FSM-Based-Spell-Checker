@@ -88,3 +88,13 @@ P.S These are rough descriptions only of what I've encountered during the debugg
      Example: mag-abante, mag-abay, ipang-abot, etc.
 
 3. Words identified as invalid does not fully turn back into black after being edited by the user.
+
+--- Filipino Words Implementation Update / 2025-01-02 / As of 3:30 AM
+1. The filipino_dict.txt file is currently a work-in-progress (WIP).
+     - I chose to discard the initial reference and instead made use of ChatGPT as well as many other websites to generate the Filipino word list
+     - The current file is not yet finished as it only currently contains 3413 words.
+     - Will add more and update this on the following days.
+
+     NOTE: the next phase of coding (upgrading the User Interface) may now begin as futher updates on my part will not affect the spellchecker.py file.
+
+2. The second and third issues listed on the previous note (New Issues: Tagalog Dictionary Implementation) remains the same [Not Fixed].  
