@@ -98,3 +98,31 @@ P.S These are rough descriptions only of what I've encountered during the debugg
      NOTE: the next phase of coding (upgrading the User Interface) may now begin as futher updates on my part will not affect the spellchecker.py file.
 
 2. The second and third issues listed on the previous note (New Issues: Tagalog Dictionary Implementation) remains the same [Not Fixed].  
+
+--- RJ's Notes: GUI Implementation / 2025-01-03 / AS OF 1:44 PM ---
+1. Created a Test File
+   - Created a copy of our working file, `spellchecker.py`, named `sampleUi.py`, for testing the GUI.  
+
+2. Implemented GUI Logic
+   - Integrated the GUI logic (using Tkinter) into the `Spellchecker` class within `sampleUi.py`.  
+   - Main Window Layout:  
+     - The main window uses a vertical layout with a `vertical_paned` PanedWindow, divided into two resizable sections:  
+       - Top Section:  
+         - Divided into two frames using a `horizontal_paned` PanedWindow nested inside the `vertical_paned` PanedWindow, for  horizontal resizing.  
+         - Left Frame (Text Input Area):  
+           - Label: Displays "Start by typing or pasting your text..." (Font: Arial, size 10).  
+           - ScrolledText Widget: A scrollable text box for input (Font: Arial, size 11).  
+         - Right Frame (Suggestion Panel):  
+           - Label: Displays "Suggestions" (Font: Arial, size 10).  
+           - ScrolledText Widget: A scrollable, read-only text box for displaying spell-check suggestions (Font: Arial, size 11).  
+       - Bottom Section (Terminal Emulation):  
+         - Acts as a terminal window for logging messages, errors, and updates. (Font: Courier New, size 9).  
+         - Background Color: Black.  
+         - Text Colors:  
+           - White for standard output (stdout).  
+           - Red for error messages (stderr).  
+         - Redirection: `sys.stdout` and `sys.stderr` are redirected to display output directly in this widget.  
+
+3. Redirected Terminal Outputs to the Widget itself
+   - Redirected terminal outputs to the GUI terminal widget for easier state monitoring. This eliminates the need to switch back and forth between the GUI and VS Code for state outputs.  
+   - Added a `TextRedirector` class to implement this feature. 
