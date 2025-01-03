@@ -1,10 +1,32 @@
+## ============================================================ ## MODULES ## ============================================================ ##
+# Regular expression module
 import re
-import tkinter as tk
-from tkinter.scrolledtext import ScrolledText
-import nltk
-from nltk.corpus import words
-word_set = set(words.words())
+
+# Tkinter module  
+import tkinter as tk 
+from tkinter.scrolledtext import ScrolledText 
+
+# Logging module
 import logging
+
+# os module to ensure that the program can access the filipino_dict.txt file
+import os
+
+# Storing the file path of the filipino words list
+file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "filipino_dict.txt")
+
+# Loading the file
+def load_filipino_word_list(file_path):
+     try:
+          with open(file_path, "r", encoding="utf-8") as file:
+               return set(file.read().splitlines())
+     except FileNotFoundError:
+          print(f"File '{file_path}' not found. Using an empty word set.")
+          return set()
+
+# Setting word_set as the Filipino word list
+word_set = load_filipino_word_list(file_path)
+
 import sys
 import atexit
 
@@ -147,30 +169,30 @@ class SpellChecker:
           self.root.title("FSM-Based Spell Checker")
           
           # Create a PanedWindow for resizable areas
-          self.paned_window = tk.PanedWindow(self.root, orient="vertical")
-          self.paned_window.pack(fill=tk.BOTH, expand=True)
+          self.vertical_paned = tk.PanedWindow(self.root, orient="vertical")
+          self.vertical_paned.pack(fill=tk.BOTH, expand=True)
           
           # Create a second PanedWindow for the left and right frames (horizontal resizing)
-          self.left_right_paned = tk.PanedWindow(self.paned_window, orient="horizontal")
-          self.paned_window.add(self.left_right_paned, stretch="always")
+          self.horizontal_paned = tk.PanedWindow(self.vertical_paned, orient="horizontal")
+          self.vertical_paned.add(self.horizontal_paned, stretch="always")
 
           # Left frame for user input text
-          self.left_frame = tk.Frame(self.left_right_paned, padx=10, pady=10)
-          self.left_right_paned.add(self.left_frame, width=600)
+          self.left_frame = tk.Frame(self.horizontal_paned, padx=10, pady=10)
+          self.horizontal_paned.add(self.left_frame, width=600)
           
           self.input_label = tk.Label(self.left_frame, text="Start by typing or pasting your text...", font=("Arial", 10))
           self.input_label.pack(fill=tk.BOTH, expand=True)
 
           # Right frame for suggestions
-          self.right_frame = tk.Frame(self.left_right_paned, padx=10, pady=10)
-          self.left_right_paned.add(self.right_frame, width=300)
+          self.right_frame = tk.Frame(self.horizontal_paned, padx=10, pady=10)
+          self.horizontal_paned.add(self.right_frame, width=300)
           
           self.placeholder_label = tk.Label(self.right_frame, text="Suggestions", font=("Arial", 10))
           self.placeholder_label.pack(fill=tk.BOTH, expand=True)
 
           # Bottom frame for terminal output
-          self.bottom_frame = tk.Frame(self.paned_window, padx=10, pady=10)
-          self.paned_window.add(self.bottom_frame, height=200, stretch="always")
+          self.bottom_frame = tk.Frame(self.vertical_paned, padx=10, pady=10)
+          self.vertical_paned.add(self.bottom_frame, height=200, stretch="always")
 
           # Text widget for user input (left section)
           self.input_text = ScrolledText(self.left_frame, font=("Arial", 11))
