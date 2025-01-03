@@ -126,3 +126,10 @@ P.S These are rough descriptions only of what I've encountered during the debugg
 3. Redirected Terminal Outputs to the Widget itself
    - Redirected terminal outputs to the GUI terminal widget for easier state monitoring. This eliminates the need to switch back and forth between the GUI and VS Code for state outputs.  
    - Added a `TextRedirector` class to implement this feature. 
+
+--- Areas for Improvement: Overall Implementation ---
+1. The GUI is simple (easy on the eyes) but appears outdated.
+2. Red highlights for incorrect words are not applied when typing on a new line.
+     - For example, when entering text manually, if you press Enter and type a few incorrect words on the new line, the words are still tagged as invalid but do not display the red highlight.
+3. Tested using the popular Filipino children’s song, "Ako ay May Lobo". Some common words in the song are not included in the dictionary.
+4. It’s unclear if we’re still going to implement the spelling suggestion feature. However, an allocated frame for this is already in place, just in case.
