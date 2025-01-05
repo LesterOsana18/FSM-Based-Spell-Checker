@@ -85,7 +85,7 @@ P.S These are rough descriptions only of what I've encountered during the debugg
      - Find another source with fewer and more common words.
 
 2. Filipino words with hypens are not read by the program as valid as our program ignores punctations.
-     Example: mag-abante, mag-abay, ipang-abot, etc.
+   Example: mag-abante, mag-abay, ipang-abot, etc. [SOLVED | 2025-01-05 | 8:39 AM]
 
 3. Words identified as invalid does not fully turn back into black after being edited by the user.
 
