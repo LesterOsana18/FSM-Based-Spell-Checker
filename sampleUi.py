@@ -217,7 +217,7 @@ class SpellChecker:
           elif user_input == "0":
                self.input_text.bind("<KeyRelease>", self.automatic_check)
           else:   
-               print("[ERROR] Invalid option. Please enter [1] or [0] only.")
+               sys.__stdout__.write("[ERROR] Invalid option. Please enter [1] or [0] only.\n") # Bypass text redirection and print directly on the terminal
                self.root.destroy()
                return
           print("\n[STATUS]: FSM-Based Spell Checker is running...")
