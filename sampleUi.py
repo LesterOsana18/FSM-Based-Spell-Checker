@@ -31,7 +31,6 @@ import sys
 import atexit
 
 ## ============================================================ ## TEXT REDIRECTOR CLASS ## ============================================================ ##
-
 # Redirects terminal output to the text widget
 class TextRedirector:
      def __init__(self, text_widget, tag="stdout"):
@@ -68,7 +67,7 @@ class StartState(State):
      # Execute method
      def execute(self, word):
           print("\n[TRANSITION]: Start -> Validating")
-          clean_word = re.sub(r"[^\w]", "", word.lower())
+          clean_word = re.sub(r"[^\w-]", "", word.lower()) # Added hyphen to allow hyphenated words
 
           if clean_word in word_set:
                print("[TRANSITION]: Validating -> Valid")
@@ -240,7 +239,7 @@ class SpellChecker:
 
                     if words and len(words[-1]) > 1:
                          last_word = words[-1]
-                         clean_word = re.sub(r"[^\w]", "", last_word.lower())
+                         clean_word = re.sub(r"[^\w-]", "", last_word.lower())  # Allow hyphens
                          start_pos = content.rfind(last_word)
                          end_pos = start_pos + len(last_word)
 
@@ -260,7 +259,7 @@ class SpellChecker:
           if event.keysym == "Control_L" or len(content.split()) > len(self.processed_words):
                self.processed_words.clear()  # Clear previously processed words
                for word in content.split():
-                    clean_word = re.sub(r"[^\w]", "", word.lower())
+                    clean_word = re.sub(r"[^\w-]", "", word.lower())  # Allow hyphens
                     start_pos = content.find(word)
                     end_pos = start_pos + len(word)
 
@@ -275,7 +274,6 @@ class SpellChecker:
                # Update processed words
                self.processed_words = set(content.split())
                return
-
 
 ## ============================================================ ## RUN THE APPLICATION ## ============================================================ ##
 if __name__ == "__main__":
