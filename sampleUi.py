@@ -249,6 +249,10 @@ class SpellChecker:
                          self.input_text.tag_add(f"invalid_{start_pos}", f"1.{start_pos}", f"1.{end_pos}")
                          self.input_text.tag_config(f"invalid_{start_pos}", foreground="red")
 
+                    elif clean_word in word_set:
+                         self.input_text.tag_add(f"invalid_{start_pos}", f"1.{start_pos}", f"1.{end_pos}")
+                         self.input_text.tag_config(f"invalid_{start_pos}", foreground="black")
+
                     self.fsm.execute(last_word)
                     self.processed_words.add(last_word)
 
