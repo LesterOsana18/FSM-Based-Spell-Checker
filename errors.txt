@@ -88,6 +88,7 @@ P.S These are rough descriptions only of what I've encountered during the debugg
    Example: mag-abante, mag-abay, ipang-abot, etc. [SOLVED | 2025-01-05 | 8:39 AM]
 
 3. Words identified as invalid does not fully turn back into black after being edited by the user.
+   [PARTIALLY SOLVED | 2:30 AM | 01-07-2025]
 
 --- Filipino Words Implementation Update / 2025-01-02 / As of 3:30 AM
 1. The filipino_dict.txt file is currently a work-in-progress (WIP).
