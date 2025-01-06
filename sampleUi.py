@@ -90,12 +90,12 @@ class StartState(State):
 class ValidWordState(State):
      def execute(self, word):
           # Placeholder for valid word processing
-          pass # Do nothing
+          pass
 
 class InvalidWordState(State):
      def execute(self, word):
           # Placeholder for invalid word processing
-          pass # Do nothing
+          pass
 
 ## ============================================================ ## FSM CLASS ## ============================================================ ##
 class FSM:
