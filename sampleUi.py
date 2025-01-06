@@ -89,13 +89,13 @@ class StartState(State):
      
 class ValidWordState(State):
      def execute(self, word):
+          # Placeholder for valid word processing
           pass # Do nothing
-          # print(f"State: Valid | Word: {word}") # Unused part of the code
 
 class InvalidWordState(State):
      def execute(self, word):
+          # Placeholder for invalid word processing
           pass # Do nothing
-          # print(f"State: Invalid | Word: {word}") # Unused part of the code
 
 ## ============================================================ ## FSM CLASS ## ============================================================ ##
 class FSM:
