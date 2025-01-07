@@ -5,3 +5,27 @@ MEETING NOTES | January 07, 2025 | 4:15 PM
 
      Feature/s to be Included:
      - Suggestion box for the invalid tagged words.
+
+ASSIGNMENT OF FINAL TASKS FOR THE PROJECT
+
+--- Document Revision ---
+[MEMBERS] Ky and Eri. RJ will be the one to oversee this task.
+[TASKS] Revise the document according to the current implementation of the application. Please refer to the changes made in the program.
+
+--- Filipino Dictionary Contents ---
+[MEMBERS] Caira, RJ, Eri, and Ky. Caira will be the one to oversee this task.
+[TASKS] Use the sources provided by Caira to add commonly used Filipino (Tagalog) words to the dictionary. No limit in the number of words. Caira will be the one to assign which members will cover different types of words. For example: conjugated, hyphenated, compound, inflected, etc.
+
+--- Implementing Additional Features ---
+[MEMBERS] Lester. Might ask for RJ and Caira's help if needed. 
+[TASKS] Implement the additional features required or suggested by Ma'am Ria herself.
+
+--- Troubleshooting Existing Issues in the Code ---
+[MEMBERS] Lester, RJ, and Caira. Lester will be the one to oversee this task.
+[TASKS] Debug and fix any existing and potential issues that may arise during the implementation process of the program.
+
+ADDITIONAL TASKS
+
+--- Content for the README.md File in the Repository ---
+[MEMBERS] To be announced.
+[TASKS] Create content for the README.md file in our shared repository that will provide a brief description and overview of what our application can perform.
