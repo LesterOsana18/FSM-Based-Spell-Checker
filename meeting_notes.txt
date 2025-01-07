@@ -1,0 +1,7 @@
+MEETING NOTES | January 07, 2025 | 4:15 PM
+     Issue/s Found:
+     - Invalid text does not revert back to black when corrected (hovering through the text).
+     - Words with apostrophe should be included in the dictionary. Also, check as valid when typed in the widget.
+
+     Feature/s to be Included:
+     - Suggestion box for the invalid tagged words.
