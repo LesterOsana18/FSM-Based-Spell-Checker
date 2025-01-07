@@ -29,3 +29,124 @@ ADDITIONAL TASKS
 --- Content for the README.md File in the Repository ---
 [MEMBERS] To be announced.
 [TASKS] Create content for the README.md file in our shared repository that will provide a brief description and overview of what our application can perform.
+
+FILIPINO_DICT.TXT CONTENTS | January 07, 2025
+
+--- Categories ---
+
+1. Dictionary-Based Words
+
+     Reference : https://quod.lib.umich.edu/p/philamer/aeg8731.0001.001/163?page=root&size=100&view=pdf&fbclid=IwZXh0bgNhZW0CMTEAAR2WppNb25jEygtBuPN46Ms3IflobiG98VF3ecdt9dFt4ni9hLvfV2nKhVw_aem_Aix1g4i_b0gs5oDJuWnQWQ
+
+     Notes:
+     1. This reference was chosen as it contains lesser words than the initial dictionary.
+     2. We only need to use pages 7 to 149.
+     2. Some words may have already been added in the filipino_dict.txt, I recommend editing directly in vs code as words in the document are suggested as you type them, indicating that they're already included.
+     
+     Issues/Reminders: 
+     Some of the words in the given reference are not very reliable
+          - some words are missing hypens
+          - some words are not correctly spelled (if you base on the text guide panel seen in the link)
+          - if you doubt the spelling of a certain word (e.g. "tahul" instead of "tahol"), consult google or other sources to find the most accurate spelling.
+     
+     Also, as you input words, it is advised to think of the other possible variations for them:
+          for example:
+               dictionary word: gupit
+               other variations that we can also input in the filipino_dict.txt : maggupit, naggupit, naggugupit, etc.
+
+          Guidelines:
+          a. consider prefixes (ma-, na-, pa-, um-, nag-, mag-, pag-, nagpa-, etc.), suffixes (-in, -an, -han, etc.), and infixes(-in-, -um-, etc.) 
+          b. consider superlatives (napaka-, pinaka-)
+          c. consider root words, compound words, and plural forms (if applicable)
+          d. consider linking forms (with "-ng" or "-g" at the end)
+               for example:
+                    balon --> balong
+                    halata --> halatang
+          e. consider synonyms and antonyms (if any comes to mind)
+
+2. Places in the Philippines 
+     
+     Notes:
+     1. Just include the names of the places individually per line, do not include english words 
+          for example: instead of Davao City,
+               include:
+                    Lungsod             //Assumming this is not already included
+                    ng                  //same here
+                    Davao
+     2. Reference is accessible online (google search), [pasearch nalang po thank youu]
+
+3. Shorthened words (with apostrophes)
+
+     Notes:
+     1. Mostly pronouns with "'y" or words preceeding the the word "at" (shortened to "<word>'t")
+     2. You may search for words to be included here or simply consult the words already in our file and references and transform them. 
+     3. Keep in mind that some words for this are already included in our filipino_dict.txt (e.g. ako'y, sayo'y, ito'y, etc.), please double check to be safe.
+
+4. Repeated words (Inuulit na mga salita: e.g. araw-araw)
+
+     Notes:
+     1. Usually nouns
+     2. Consider still variations with suffixes (e.g. araw-arawin), prefixes (e.g. paulit-ulit), and infixes (if any)
+     3. Also consider again their linking forms (e.g. araw-arawing)
+
+5. Prepositions, Conjuctions, Interjections
+
+     Notes:
+     1. There are already many prepositions (e.g. sa, pero, etc.), and conjuctions (e.g. at, etc.), double check if there are any other prepositions and conjunctions missing.
+     2. Include interjections (e.g. Aba, naku, oy, O, etc.) as there are currently not much in our file. 
+     3. You may search for words to be included here as not much is covered in the reference.
+
+6. Adjectives
+
+     Notes:
+     1. This may already be covered in the dictionary but not all of it, I believe.
+     2. This reference could be of use: https://www.scribd.com/document/385777140/talaan-ng-mga-pang-uri-pdf?fbclid=IwZXh0bgNhZW0CMTEAAR1S3pAD227eQUDvrog9xwgSsPPyhhniYO_hbKWP2kRYb8W056UaTLS7r9A_aem_-hJCo3PubF9TlTWvBH7ZeA
+     3. Also searching for other references is advised. 
+     4. Again, double check if the words are already in our file.
+     5. Reconsider the stated guidelines in the Dictionary-based words.
+
+7. Animals
+
+     Notes:
+     1. Some animals are already included in our file, please double check before including more.
+     2. Consider male or female wording variations (e.g. manok --> inahin, tandang)
+
+8. Food
+
+     Notes:
+     1. Some foods are already included, please double just to be safe
+     2. Consider fruits, vegetables, viands, kakanin, street foods, etc.
+     3. Consider ingredients (condiments or raw versions (e.g. bigas))
+
+9. Numbering
+
+     Notes:
+     1. Basic numbering like "isa", "dalawa", ... were already covered
+     2. Include numbers as time (double check as some are already included)
+     3. Include also spanish numbering (e.g. uno, dos, tres, etc.), please double check as some might have already been included in our file.
+     4. Consider ordinal and monetary forms 
+
+ps. feel free to include other words not covered by any of the above categories and are not yet included in our file. ^^
+
+
+--- Distribution of Parts ---
+
+[Caira]
+     1. Dictionary-Based Words (pages 7 to 44)
+     2. Adjectives
+     3. Prepositions, Conjunctions, Interjections
+
+[RJ]
+     1. Dictionary-Based Words (pages 45 to 79)
+     2. Places
+     3. Repeated Words
+
+[Eri]
+     1. Dictionary-Based Words (pages 80 to 114)
+     2. Foods
+     3. Numbering
+
+[Ky]
+     1. Dictionary-Based Words (pages 115 to 149)
+     2. Animals
+     3. Shortened Words
