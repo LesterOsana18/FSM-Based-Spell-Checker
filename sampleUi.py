@@ -251,8 +251,8 @@ class SpellChecker:
                     
                     # Revert the color of the corrected word to black
                     elif clean_word in word_set:
-                         self.input_text.tag_add(f"invalid_{start_pos}", f"1.{start_pos}", f"1.{end_pos}")
-                         self.input_text.tag_config(f"invalid_{start_pos}", foreground="black")
+                         self.input_text.tag_add(f"valid_{start_pos}", f"1.{start_pos}", f"1.{end_pos}")
+                         self.input_text.tag_config(f"valid_{start_pos}", foreground="black")
 
                     self.fsm.execute(last_word)
                     self.processed_words.add(last_word)
