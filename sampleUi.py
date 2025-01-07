@@ -170,30 +170,30 @@ class SpellChecker:
           self.root.title("FSM-Based Spell Checker")
           
           # Create a PanedWindow for resizable areas
-          self.vertical_paned = tk.PanedWindow(self.root, orient="vertical")
-          self.vertical_paned.pack(fill=tk.BOTH, expand=True)
+          self.vertical_main_window = tk.PanedWindow(self.root, orient="vertical")
+          self.vertical_main_window.pack(fill=tk.BOTH, expand=True)
           
           # Create a second PanedWindow for the left and right frames (horizontal resizing)
-          self.horizontal_paned = tk.PanedWindow(self.vertical_paned, orient="horizontal")
-          self.vertical_paned.add(self.horizontal_paned, stretch="always")
+          self.horizontal_top_pane = tk.PanedWindow(self.vertical_main_window, orient="horizontal")
+          self.vertical_main_window.add(self.horizontal_top_pane, stretch="always")
 
           # Left frame for user input text
-          self.left_frame = tk.Frame(self.horizontal_paned, padx=10, pady=10)
-          self.horizontal_paned.add(self.left_frame, width=600)
+          self.left_frame = tk.LabelFrame(self.horizontal_top_pane, text="Tagalog Spell Checker", padx=5, pady=5, width=600, height=400)
+          self.horizontal_top_pane.add(self.left_frame, width=600)
           
-          self.input_label = tk.Label(self.left_frame, text="Start by typing or pasting your text...", font=("Arial", 10))
+          self.input_label = tk.Label(self.left_frame, text="Start by typing or pasting your text...", font=("Arial", 8))
           self.input_label.pack(fill=tk.BOTH, expand=True)
 
           # Right frame for suggestions
-          self.right_frame = tk.Frame(self.horizontal_paned, padx=10, pady=10)
-          self.horizontal_paned.add(self.right_frame, width=300)
+          self.right_frame = tk.LabelFrame(self.horizontal_top_pane, text="Spelling Suggestions", padx=5, pady=5, width=300, height=400)
+          self.horizontal_top_pane.add(self.right_frame, width=300)
           
-          self.placeholder_label = tk.Label(self.right_frame, text="Suggestions", font=("Arial", 10))
+          self.placeholder_label = tk.Label(self.right_frame, text="Did you mean...", font=("Arial", 8))
           self.placeholder_label.pack(fill=tk.BOTH, expand=True)
 
           # Bottom frame for terminal output
-          self.bottom_frame = tk.Frame(self.vertical_paned, padx=10, pady=10)
-          self.vertical_paned.add(self.bottom_frame, height=200, stretch="always")
+          self.bottom_frame = tk.LabelFrame(self.vertical_main_window, text="Terminal Output", padx=5, pady=5, width=900, height=200)
+          self.vertical_main_window.add(self.bottom_frame, height=200, stretch="always")
 
           # Text widget for user input (left section)
           self.input_text = ScrolledText(self.left_frame, font=("Arial", 11))
