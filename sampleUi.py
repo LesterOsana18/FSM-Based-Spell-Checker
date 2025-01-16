@@ -6,6 +6,9 @@ import re
 import tkinter as tk 
 from tkinter.scrolledtext import ScrolledText 
 
+# String matching module
+from difflib import get_close_matches
+
 # Logging module
 import logging
 
