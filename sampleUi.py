@@ -237,21 +237,29 @@ class SpellChecker:
 
           # Detect typing: Check if words are being typed one by one
           if event.keysym in ("space", "Return"):
-                    words = content.split()
+               words = content.split()
+               
+               # Extract the last word, clean it, and find its start and end positions in the content
+               if words and len(words[-1]) > 1:
+                    last_word = words[-1]
+                    clean_word = re.sub(r"[^\w-]", "", last_word.lower())  # Allow hyphens
+                    start_pos = content.rfind(last_word)
+                    end_pos = start_pos + len(last_word)
 
-                    if words and len(words[-1]) > 1:
-                         last_word = words[-1]
-                         clean_word = re.sub(r"[^\w-]", "", last_word.lower())  # Allow hyphens
-                         start_pos = content.rfind(last_word)
-                         end_pos = start_pos + len(last_word)
+                    # Calculate the line and column positions
+                    line_start = content[:start_pos].count('\n') + 1
+                    col_start = start_pos - content.rfind('\n', 0, start_pos) - 1
+                    line_end = content[:end_pos].count('\n') + 1
+                    col_end = end_pos - content.rfind('\n', 0, end_pos) - 1
 
+                    # Highlight invalid words
                     if clean_word not in word_set:
-                         self.input_text.tag_add(f"invalid_{start_pos}", f"1.{start_pos}", f"1.{end_pos}")
+                         self.input_text.tag_add(f"invalid_{start_pos}", f"{line_start}.{col_start}", f"{line_end}.{col_end}")
                          self.input_text.tag_config(f"invalid_{start_pos}", foreground="red")
                     
-                    # Revert the color of the corrected word to black
+                    # Revert the color of corrected (valid) words to black
                     elif clean_word in word_set:
-                         self.input_text.tag_add(f"valid_{start_pos}", f"1.{start_pos}", f"1.{end_pos}")
+                         self.input_text.tag_add(f"valid_{start_pos}", f"{line_start}.{col_start}", f"{line_end}.{col_end}")
                          self.input_text.tag_config(f"valid_{start_pos}", foreground="black")
 
                     self.fsm.execute(last_word)
