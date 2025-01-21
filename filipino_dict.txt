@@ -657,7 +657,6 @@ bagumbayan
 bagwis
 bagyo
 baha
-baha
 bahag
 bahaghari
 bahagi
@@ -761,7 +760,6 @@ bangka
 bangkay
 bangkero
 bangko
-bango
 bango
 bangon
 bangong
@@ -1861,7 +1859,6 @@ dinadahak
 dinadakip
 dinadakot
 dinadala
-dinadala
 dinadalang
 dinadalaw
 dinadamitan
@@ -2336,7 +2333,6 @@ gagayumahing
 gahasa
 gahasang
 gahol
-gala
 gala
 galak
 galang
@@ -2931,6 +2927,7 @@ halik-halikan
 halimbawa
 halimbawang
 halimuyak
+halina't
 haling
 halinghing
 halinhan
@@ -3417,7 +3414,6 @@ hiyawang
 hopia
 hospital
 hubad
-hubad
 hubaran
 hubarang
 hubo
@@ -3479,7 +3475,6 @@ hulmado
 hulmadong
 hulmang
 hulo
-hulog
 hulog
 hulong
 hulugan
@@ -3653,7 +3648,6 @@ ialay
 ialis
 ialok
 iayos
-iba
 iba
 ibaba
 ibabad
@@ -4002,6 +3996,7 @@ ikalima
 ikalimang
 ikaliwa
 ikaliwang
+ikamamatay
 ikanlong
 ikapit
 ikapito
@@ -4943,6 +4938,7 @@ itulad
 itulak
 ituloy
 itumba
+itumbang
 itumbo
 itungkol
 itungo
@@ -4953,6 +4949,8 @@ itutoon
 itutulad
 itutulak
 itutuloy
+itutumba
+itutumbang
 ituturo
 ituturong
 itutuwid
@@ -4984,7 +4982,6 @@ ix
 iyak
 iyakin
 iyaking
-iyan
 iyan
 iyang
 iyanig
@@ -5617,6 +5614,7 @@ kalmadong
 kalo
 kalog
 kalokohan
+kalokohang
 kaloob
 kalooban
 kaloobang
@@ -6137,6 +6135,7 @@ kayasan
 kaya't
 kayayari
 kayo
+kayo't
 kayong
 kaysa
 kayumanggi
@@ -6345,7 +6344,6 @@ kuliglig
 kulimlim
 kulit
 kulkulin
-kulo
 kulo
 kulog
 kulong
@@ -6767,7 +6765,6 @@ legazpi
 leksyon
 lemonada
 leon
-letra
 letra
 letrang
 leyte
@@ -7951,6 +7948,8 @@ magpakainom
 magpakalaon
 magpakaluat
 magpakamot
+magpakarami
+magpakaraming
 magpakasakit
 magpakasal
 magpakilala
@@ -8184,6 +8183,8 @@ magtulakan
 magtuli
 magtuloy
 magtulungan
+magtumba
+magtumbang
 magtunaw
 magtungayaw
 magtuos
@@ -8235,7 +8236,6 @@ mahahanap
 mahaharap
 mahahatid
 mahahawakan
-mahal
 mahal
 mahalaga
 mahalagang
@@ -11129,6 +11129,7 @@ matulunging
 matulusan
 matuluyan
 matumba
+matumbang
 matunaw
 matunganga
 matunghay
@@ -11173,6 +11174,7 @@ matutulugan
 matutulusan
 matutuluyan
 matutumba
+matutumbang
 matutunaw
 matutungo
 matutungod
@@ -11834,7 +11836,6 @@ muwestrahan
 muyag
 n’yo
 na
-na
 naaabala
 naaabot
 naaadornohan
@@ -11858,7 +11859,6 @@ naastraso
 naawas
 nababagabag
 nababagay
-nababago
 nababago
 nababagong
 nababaluktot
@@ -12315,6 +12315,8 @@ nagtirik
 nagtitiis
 nagtitirik
 nagtiyaga
+nagtumba
+nagtumbang
 nagugulat
 nagugulo
 nagugulong
@@ -14414,6 +14416,7 @@ natulugan
 natulusan
 natuluyan
 natumba
+natumbang
 natunaw
 natungo
 natungod
@@ -14455,6 +14458,7 @@ natutulugan
 natutulusan
 natutuluyan
 natutumba
+natutumbang
 natutunaw
 natutungod
 natutuos
@@ -14590,7 +14594,6 @@ negros
 neneto
 nevada
 new
-ng
 ng
 nga
 ngabngab
@@ -15075,7 +15078,6 @@ o
 oberhed
 oberhol
 oberholin
-oberholin
 oberkot
 oberol
 obertaim
@@ -15088,7 +15090,6 @@ obitwaryo
 obligado
 obligadong
 obligahin
-obligahin
 obligasyon
 obligatory
 obligatoryo
@@ -15100,8 +15101,6 @@ obras-publikas
 obrero
 obserba
 obserbahan
-obserbahan
-obserbahin
 obserbahin
 obserbasyon
 obserbatory
@@ -15140,7 +15139,6 @@ opisina
 opisyal
 opisyo
 opisyuhin
-opisyuhin
 opo
 oportunidad
 oportunista
@@ -15162,11 +15160,9 @@ oral
 oranggutang
 oras
 orasan
-orasan
 orasang
 oras-oras
 orasyon
-orasyunan
 orasyunan
 oratorikal
 oratorio
@@ -15176,7 +15172,6 @@ orbita
 orden
 ordenado
 ordenadong
-ordenan
 ordenan
 ordenansa
 ordenansyon
@@ -15192,7 +15187,6 @@ organdi
 organik
 organiko
 organisado
-organisahin
 organisahin
 organisasyon
 organista
@@ -15340,6 +15334,7 @@ paboreal
 paborita
 paboritismo
 paborito
+paboritong
 pabugok
 pabugsu-bugso
 pabugsu-bugsong
@@ -16309,6 +16304,7 @@ pagkit
 pagkokomika
 pagkokonektahin
 pagkonektahin
+pagkukulang
 paglaanan
 paglabag
 paglaban
@@ -16507,7 +16503,6 @@ pagpapahangin
 pagpapahatid
 pagpapahayag
 pagpapahid
-pagpapahina
 pagpapahina
 pagpapahinahon
 pagpapahinga
@@ -16912,6 +16907,8 @@ pagtukoy
 pagtuktok
 pagtula
 pagtulak
+pagtumba
+pagtumbang
 pagtunaw
 pagtutubuan
 pagtutugmain
@@ -17070,7 +17067,6 @@ pahupang
 paiimbulugin
 paiimpisin
 paiinamin
-paiinitin
 paiinitin
 paikot
 paikot-ikot
@@ -17498,6 +17494,7 @@ pamatnubay
 pamatnugutan
 pamato
 pamatok
+pamatong
 pamatos
 pamatukan
 pamauna
@@ -21382,6 +21379,8 @@ pinakanakakaiyak
 pinakanakakalungkot
 pinakanakatatawa
 pinakanatatandaan
+pinakapaborito
+pinakapaboritong
 pinakapanganib
 pinakapangit
 pinakapango
@@ -22510,6 +22509,7 @@ pinatiyad
 pinatiyempuhan
 pinatlangan
 pinatnubayan
+pinatong
 pinatos
 pinatotohanan
 pinatrolyahan
@@ -22820,6 +22820,7 @@ piniprinsahan
 piniprito
 piniraso
 piniringan
+piniringang
 pinirinsa
 pinirito
 piniritos
@@ -23633,6 +23634,7 @@ preskripsiyon
 preskripsyon
 presman
 preso
+presong
 prestihiyo
 presuhan
 presupuwesto
@@ -24318,7 +24320,6 @@ punit-punit
 punla
 punlaan
 punlo
-puno
 puno
 punong
 punong-bayan
@@ -25422,6 +25423,7 @@ sakil
 sakilos
 sakim
 sakin
+saking
 sakit
 sakitin
 sakiting
@@ -30295,7 +30297,6 @@ tanggap
 tanggapan
 tanggapang
 tanggapin
-tanggapin
 tanggaping
 tanggi
 tanggihan
@@ -31900,7 +31901,9 @@ tinulusan
 tinulutan
 tinuluyan
 tinuma
+tinumba
 tinumbalikan
+tinumbang
 tinumbasan
 tinunaw
 tinunelan
@@ -31976,7 +31979,9 @@ tinutulusan
 tinutulutan
 tinutuluyan
 tinutuma
+tinutumba
 tinutumbalikan
+tinutumbang
 tinutumbasan
 tinutunaw
 tinutunelan
@@ -32992,6 +32997,7 @@ tumbaga
 tumbalik
 tumbalikan
 tumbalikin
+tumbang
 tumbas
 tumbasan
 tumbatumba
