@@ -313,8 +313,8 @@ class SpellChecker:
                     # Highlight invalid words in red and valid words in black
                     if clean_word not in word_set:
                          # Highlight invalid word
-                         self.input_text.tag_add(f"invalid_{start_pos}", f"{line_start}.{col_start}", f"{line_end}.{col_end}")
-                         self.input_text.tag_config(f"invalid_{start_pos}", foreground="red")
+                         self.input_text.tag_add(f"invalid", f"{line_start}.{col_start}", f"{line_end}.{col_end}")
+                         self.input_text.tag_config(f"invalid", foreground="red")
 
                     else:
                          # Highlight valid word
