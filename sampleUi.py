@@ -3,6 +3,7 @@
 import re
 
 # CustomTkinter module
+import customtkinter as ctk
 from customtkinter import *
 
 # Tkinter module  
@@ -169,53 +170,53 @@ class SpellChecker:
           print("[0] Paste text")
           user_input = input("[SELECT] Enter [1] or [0] only: ")
 
-          # Initialize FSM and Tkinter
+          # Initialize FSM and CustomTkinter
           self.fsm = FSM()
-          self.root = tk.Tk()
+          self.root = ctk.CTk()  # Replace tk.Tk() with CTk
           self.root.geometry("900x600")
           self.root.title("FSM-Based Spell Checker")
-          
-          # Create a PanedWindow for resizable areas
-          self.vertical_main_window = tk.PanedWindow(self.root, orient="vertical")
-          self.vertical_main_window.pack(fill=tk.BOTH, expand=True)
-          
-          # Create a second PanedWindow for the left and right frames (horizontal resizing)
-          self.horizontal_top_pane = tk.PanedWindow(self.vertical_main_window, orient="horizontal")
-          self.vertical_main_window.add(self.horizontal_top_pane, stretch="always")
+
+          # Create the main vertical frame
+          self.vertical_main_window = ctk.CTkFrame(self.root)
+          self.vertical_main_window.pack(fill="both", expand=True)
+
+          # Create a horizontal frame for top sections
+          self.horizontal_top_pane = ctk.CTkFrame(self.vertical_main_window)
+          self.horizontal_top_pane.pack(side="top", fill="both", expand=True)
 
           # Left frame for user input text
-          self.left_frame = tk.LabelFrame(self.horizontal_top_pane, text="Tagalog Spell Checker", padx=5, pady=5, width=600, height=400)
-          self.horizontal_top_pane.add(self.left_frame, width=600)
-          
-          self.input_label = tk.Label(self.left_frame, text="Start by typing or pasting your text...", font=("Arial", 8))
-          self.input_label.pack(fill=tk.BOTH, expand=False)
+          self.left_frame = ctk.CTkFrame(self.horizontal_top_pane, width=600, height=400, corner_radius=10)
+          self.left_frame.pack(side="left", fill="both", expand=True, padx=10, pady=10)
 
-          # Right frame for suggestions
-          self.right_frame = tk.LabelFrame(self.horizontal_top_pane, text="Spelling Suggestions", padx=5, pady=5, width=300, height=400)
-          self.horizontal_top_pane.add(self.right_frame, width=300)
-          
-          self.placeholder_label = tk.Label(self.right_frame, text="Did you mean...", font=("Arial", 8))
-          self.placeholder_label.pack(fill=tk.BOTH, expand=False)
-
-          # Bottom frame for terminal output
-          self.bottom_frame = tk.LabelFrame(self.vertical_main_window, text="Terminal Output", padx=5, pady=5, width=900, height=200)
-          self.vertical_main_window.add(self.bottom_frame, height=200, stretch="always")
+          self.input_label = ctk.CTkLabel(self.left_frame, text="Start by typing or pasting your text...", font=ctk.CTkFont(size=12))
+          self.input_label.pack(fill="x", pady=5)
 
           # Text widget for user input (left section)
           self.input_text = ScrolledText(self.left_frame, font=("Arial", 11))
-          self.input_text.pack(fill=tk.BOTH, expand=True)
+          self.input_text.pack(fill="both", expand=True, padx=5, pady=5)
 
-          # Placeholder for suggestions (right section)
+          # Right frame for suggestions
+          self.right_frame = ctk.CTkFrame(self.horizontal_top_pane, width=300, height=400, corner_radius=10)
+          self.right_frame.pack(side="right", fill="both", expand=True, padx=10, pady=10)
+
+          self.placeholder_label = ctk.CTkLabel(self.right_frame, text="Did you mean...", font=ctk.CTkFont(size=12))
+          self.placeholder_label.pack(fill="x", pady=5)
+
+          # Suggestions text box (right section)
           self.suggestions_text = ScrolledText(self.right_frame, font=("Arial", 10), state="disabled")
-          self.suggestions_text.pack(fill=tk.BOTH, expand=True)
+          self.suggestions_text.pack(fill="both", expand=True, padx=5, pady=5)
 
-          # Bind the click event to invalid words only
-          self.input_text.tag_bind("invalid", "<Button-1>", self.handle_click)
+          # Bottom frame for terminal output
+          self.bottom_frame = ctk.CTkFrame(self.vertical_main_window, width=900, height=200, corner_radius=10)
+          self.bottom_frame.pack(side="bottom", fill="both", expand=True, padx=10, pady=10)
 
-          # Text widget for terminal output (bottom section)
+          terminal_label = ctk.CTkLabel(self.bottom_frame, text="Terminal Output", font=ctk.CTkFont(size=12))
+          terminal_label.pack(fill="x", pady=5)
+
+          # Terminal output text box
           self.terminal_output = ScrolledText(self.bottom_frame, font=("Courier New", 9), bg="black", fg="white", state="disabled")
-          self.terminal_output.pack(fill=tk.BOTH, expand=True)
-          
+          self.terminal_output.pack(fill="both", expand=True, padx=5, pady=5)
+               
           # Redirect stdout and stderr to terminal_output
           sys.stdout = TextRedirector(self.terminal_output, "stdout")
           sys.stderr = TextRedirector(self.terminal_output, "stderr")
