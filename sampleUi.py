@@ -117,7 +117,7 @@ class FSM:
      # Transition method
      def transition(self, state_name, word=None):
           if state_name in self.states:
-               # Suppress the "Switching to State: Start" message
+               # Print the resulting state and word
                if state_name != "start" and word:
                     print(f"[RESULTING STATE]: {state_name.capitalize()}", flush=True)
                     print(f"[WORD]: {word}", flush=True)
@@ -206,6 +206,9 @@ class SpellChecker:
           self.suggestions_text = ScrolledText(self.right_frame, font=("Arial", 10), state="disabled")
           self.suggestions_text.pack(fill=tk.BOTH, expand=True)
 
+          # Bind the click event to invalid words only
+          self.input_text.tag_bind("invalid", "<Button-1>", self.handle_click)
+
           # Text widget for terminal output (bottom section)
           self.terminal_output = ScrolledText(self.bottom_frame, font=("Courier New", 9), bg="black", fg="white", state="disabled")
           self.terminal_output.pack(fill=tk.BOTH, expand=True)
@@ -233,41 +236,107 @@ class SpellChecker:
           self.processed_words = set()  # Track already processed words
           self.root.mainloop()
 
-     # Manual check method 
+     # Highlight word method
+     def highlight_word(self, word, start_pos, end_pos, is_invalid):
+          # Highlight a word as valid or invalid.
+          self.input_text.tag_remove("invalid", start_pos, end_pos)  # Remove previous invalid tags
+          self.input_text.tag_remove("valid", start_pos, end_pos)    # Remove previous valid tags
+
+          if is_invalid:
+               self.input_text.tag_add("invalid", start_pos, end_pos)
+               self.input_text.tag_config("invalid", foreground="red")
+          else:
+               self.input_text.tag_add("valid", start_pos, end_pos)
+               self.input_text.tag_config("valid", foreground="black")
+     
+     # Handle click method
+     def handle_click(self, event):
+          """Handle left mouse clicks only on invalid words."""
+          try:
+               # Get the index of the clicked position
+               click_index = self.input_text.index(f"@{event.x},{event.y}")
+
+               # Get the tags associated with the clicked position
+               tags = self.input_text.tag_names(click_index)
+
+               # Check if the "invalid" tag is present
+               if "invalid" in tags:
+                    # Get the word at the clicked position
+                    word_start = self.input_text.index(f"{click_index} wordstart")
+                    word_end = self.input_text.index(f"{click_index} wordend")
+                    clicked_word = self.input_text.get(word_start, word_end).strip()
+
+                    # Display suggestions in the suggestion box
+                    suggestions = self.get_suggestions(clicked_word)
+                    self.suggestions_text.config(state="normal")
+                    self.suggestions_text.delete("1.0", tk.END)
+                    if suggestions:
+                         self.suggestions_text.insert(tk.END, f"Suggestions for '{clicked_word}':\n")
+                         for suggestion in suggestions:
+                              self.suggestions_text.insert(tk.END, f"• {suggestion}\n")
+                    else:
+                         self.suggestions_text.insert(tk.END, f"No suggestions for '{clicked_word}'.\n")
+                    self.suggestions_text.config(state="disabled")
+          except Exception as e:
+               print(f"Error in handle_click: {e}")
+
+     # Get suggestions method
+     def get_suggestions(self, word):
+          """Retrieve suggestions for the given word."""
+          return get_close_matches(word, word_set, n=5, cutoff=0.6)
+
+     # Manual check method
      def manual_check(self, event):
+          """Manually check the validity of words and show suggestions for invalid words."""
           # Get the current content of the text widget
           content = self.input_text.get("1.0", tk.END).strip()
 
-          # Detect typing: Check if words are being typed one by one
+          # Trigger on space or Enter key
           if event.keysym in ("space", "Return"):
                words = content.split()
-               
-               # Extract the last word, clean it, and find its start and end positions in the content
-               if words and len(words[-1]) > 1:
+
+               # Extract the last word, clean it, and process
+               if words and len(words[-1]) > 1:  # Only process words longer than one character
                     last_word = words[-1]
                     clean_word = re.sub(r"[^\w-]", "", last_word.lower())  # Allow hyphens
+
+                    # Find the start and end positions of the word
                     start_pos = content.rfind(last_word)
                     end_pos = start_pos + len(last_word)
 
-                    # Calculate the line and column positions
+                    # Calculate line and column positions for multi-line text
                     line_start = content[:start_pos].count('\n') + 1
                     col_start = start_pos - content.rfind('\n', 0, start_pos) - 1
                     line_end = content[:end_pos].count('\n') + 1
                     col_end = end_pos - content.rfind('\n', 0, end_pos) - 1
 
-                    # Highlight invalid words
+                    # Highlight invalid words in red and valid words in black
                     if clean_word not in word_set:
+                         # Highlight invalid word
                          self.input_text.tag_add(f"invalid_{start_pos}", f"{line_start}.{col_start}", f"{line_end}.{col_end}")
                          self.input_text.tag_config(f"invalid_{start_pos}", foreground="red")
-                    
-                    # Revert the color of corrected (valid) words to black
-                    elif clean_word in word_set:
+
+                         # (Optional) Show suggestions for invalid words
+                         suggestions = self.get_suggestions(clean_word)
+                         self.suggestions_text.config(state="normal")
+                         self.suggestions_text.delete("1.0", tk.END)
+                         if suggestions:
+                              self.suggestions_text.insert(tk.END, f"Suggestions for '{last_word}':\n")
+                              for suggestion in suggestions:
+                                   self.suggestions_text.insert(tk.END, f"• {suggestion}\n")
+                         else:
+                              self.suggestions_text.insert(tk.END, f"No suggestions for '{last_word}'.\n")
+                         self.suggestions_text.config(state="disabled")
+
+                    else:
+                         # Highlight valid word
                          self.input_text.tag_add(f"valid_{start_pos}", f"{line_start}.{col_start}", f"{line_end}.{col_end}")
                          self.input_text.tag_config(f"valid_{start_pos}", foreground="black")
 
+                    # Execute FSM for the word
                     self.fsm.execute(last_word)
                     self.processed_words.add(last_word)
-
+     
      # Automatic check method
      def automatic_check(self, event):
           # Get the current content of the text widget
