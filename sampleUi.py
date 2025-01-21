@@ -185,14 +185,14 @@ class SpellChecker:
           self.horizontal_top_pane.add(self.left_frame, width=600)
           
           self.input_label = tk.Label(self.left_frame, text="Start by typing or pasting your text...", font=("Arial", 8))
-          self.input_label.pack(fill=tk.BOTH, expand=True)
+          self.input_label.pack(fill=tk.BOTH, expand=False)
 
           # Right frame for suggestions
           self.right_frame = tk.LabelFrame(self.horizontal_top_pane, text="Spelling Suggestions", padx=5, pady=5, width=300, height=400)
           self.horizontal_top_pane.add(self.right_frame, width=300)
           
           self.placeholder_label = tk.Label(self.right_frame, text="Did you mean...", font=("Arial", 8))
-          self.placeholder_label.pack(fill=tk.BOTH, expand=True)
+          self.placeholder_label.pack(fill=tk.BOTH, expand=False)
 
           # Bottom frame for terminal output
           self.bottom_frame = tk.LabelFrame(self.vertical_main_window, text="Terminal Output", padx=5, pady=5, width=900, height=200)
