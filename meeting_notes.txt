@@ -150,3 +150,18 @@ ps. feel free to include other words not covered by any of the above categories 
      1. Dictionary-Based Words (pages 115 to 149)
      2. Animals
      3. Shortened Words
+
+--- FINAL TASKS FOR THE SUBMISSION OF THE AUTOMATA PROJECT ---
+
+1. The document should be finalized by Wednesday, January 22. The deadline is 8 PM.
+2. After Lester’s approval, the document will be ready for printing. A hard copy will be provided by Eri.
+3. Ongoing issues in the code should be resolved by Lester and Caira.
+4. Improvements to the overall UI layout will be assigned to RJ.
+
+CURRENT ISSUES FOUND IN THE CODE
+
+[ISSUE #1] The automatic_check method is outdated and lacks the functionalities present in the manual_check method. This needs to be addressed.
+[ISSUE #2] When the window is maximized, the dimensions of the text widget appear odd. The suggestions box becomes larger than the main text field.
+
+P.S Please try using the application itself so you can test for potential issues or errors in the implementation. 
+    Kindly update the group if you found anything. Thanks!
