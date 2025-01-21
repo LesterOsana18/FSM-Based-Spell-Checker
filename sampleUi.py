@@ -316,18 +316,6 @@ class SpellChecker:
                          self.input_text.tag_add(f"invalid_{start_pos}", f"{line_start}.{col_start}", f"{line_end}.{col_end}")
                          self.input_text.tag_config(f"invalid_{start_pos}", foreground="red")
 
-                         # (Optional) Show suggestions for invalid words
-                         suggestions = self.get_suggestions(clean_word)
-                         self.suggestions_text.config(state="normal")
-                         self.suggestions_text.delete("1.0", tk.END)
-                         if suggestions:
-                              self.suggestions_text.insert(tk.END, f"Suggestions for '{last_word}':\n")
-                              for suggestion in suggestions:
-                                   self.suggestions_text.insert(tk.END, f"• {suggestion}\n")
-                         else:
-                              self.suggestions_text.insert(tk.END, f"No suggestions for '{last_word}'.\n")
-                         self.suggestions_text.config(state="disabled")
-
                     else:
                          # Highlight valid word
                          self.input_text.tag_add(f"valid_{start_pos}", f"{line_start}.{col_start}", f"{line_end}.{col_end}")
