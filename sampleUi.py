@@ -298,7 +298,7 @@ class SpellChecker:
                # Extract the last word, clean it, and process
                if words and len(words[-1]) > 1:  # Only process words longer than one character
                     last_word = words[-1]
-                    clean_word = re.sub(r"[^\w-]", "", last_word.lower())  # Allow hyphens
+                    clean_word = re.sub(r"[^\w'-]", "", last_word.lower())  # Allow hyphens
 
                     # Find the start and end positions of the word
                     start_pos = content.rfind(last_word)
@@ -334,7 +334,7 @@ class SpellChecker:
           if event.keysym == "Control_L" or len(content.split()) > len(self.processed_words):
                self.processed_words.clear()  # Clear previously processed words
                for word in content.split():
-                    clean_word = re.sub(r"[^\w-]", "", word.lower())  # Allow hyphens
+                    clean_word = re.sub(r"[^\w'-]", "", word.lower())  # Allow hyphens
                     start_pos = content.find(word)
                     end_pos = start_pos + len(word)
 
