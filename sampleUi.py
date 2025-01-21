@@ -2,6 +2,9 @@
 # Regular expression module
 import re
 
+# CustomTkinter module
+from customtkinter import *
+
 # Tkinter module  
 import tkinter as tk 
 from tkinter.scrolledtext import ScrolledText 
