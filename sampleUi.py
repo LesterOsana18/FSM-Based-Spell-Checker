@@ -214,8 +214,12 @@ class SpellChecker:
           self.sg_textbox_label.grid(row=0, column=0, sticky="n", pady=(5, 10))
 
           # Suggestions Text Box
-          self.suggestions_text = ctk.CTkTextbox(master=self.right_frame, width=230, height=300, font=("Arial", 12))
-          self.suggestions_text.grid(row=0, column=0, sticky="nsew", padx=10, pady=(40, 10)) 
+          self.suggestions_text = ctk.CTkTextbox(master=self.right_frame, width=230, height=250, font=("Arial", 14))
+          self.suggestions_text.grid(row=0, column=0, sticky="nsew", padx=10, pady=(40, 0)) 
+
+          # Suggestions Box Clear Button
+          self.clear_button = ctk.CTkButton(master=self.right_frame, width=230, height=40, text="Clear Suggestions", font=("Arial", 12, "bold"), fg_color="red", hover_color="green", command=self.delete_suggestions)
+          self.clear_button.grid(row=1, column=0, sticky="nsew", padx=10, pady=(10, 10))
 
           # Terminal Output Frame
           self.terminal_frame = ctk.CTkFrame(master=self.bottom_frame, width=900, height=250)
@@ -303,6 +307,13 @@ class SpellChecker:
      def get_suggestions(self, word):
           """Retrieve suggestions for the given word."""
           return get_close_matches(word, word_set, n=5, cutoff=0.6)
+
+     # Delete suggestions method
+     def delete_suggestions(self):
+          """Delete suggestions from the suggestion box."""
+          self.suggestions_text.configure(state="normal")
+          self.suggestions_text.delete("1.0", tk.END)
+          self.suggestions_text.configure(state="disabled")
 
      # Manual check method
      def manual_check(self, event):
