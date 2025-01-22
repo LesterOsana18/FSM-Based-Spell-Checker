@@ -175,53 +175,68 @@ class SpellChecker:
           self.root = ctk.CTk()  # Replace tk.Tk() with CTk
           self.root.geometry("900x600")
           self.root.title("FSM-Based Spell Checker")
+          self.root.resizable(width=True, height=True)
 
-          # Create the main vertical frame
-          self.vertical_main_window = ctk.CTkFrame(self.root)
-          self.vertical_main_window.pack(fill="both", expand=True)
+          # Top Frame
+          self.top_frame = ctk.CTkFrame(master=self.root, width=900, height=350)
+          self.top_frame.pack(side="top", fill="both", expand=True)
 
-          # Create a horizontal frame for top sections
-          self.horizontal_top_pane = ctk.CTkFrame(self.vertical_main_window)
-          self.horizontal_top_pane.pack(side="top", fill="both", expand=True)
+          # Bottom Frame
+          self.bottom_frame = ctk.CTkFrame(master=self.root, width=900, height=250)
+          self.bottom_frame.pack(side="top", fill="both", expand=True)
 
-          # Left frame for user input text
-          self.left_frame = ctk.CTkFrame(self.horizontal_top_pane, width=600, height=400, corner_radius=10)
-          self.left_frame.pack(side="left", fill="both", expand=True, padx=10, pady=10)
+          # Spell Checker Frame
+          self.left_frame = ctk.CTkFrame(master=self.top_frame, width=600, height=350)
+          self.left_frame.pack(side="left", fill="both", expand=True, padx=(10, 5), pady=10)
 
-          self.input_label = ctk.CTkLabel(self.left_frame, text="Start by typing or pasting your text...", font=ctk.CTkFont(size=12))
-          self.input_label.pack(fill="x", pady=5)
+          # Configure grid for dynamic resizing
+          self.left_frame.grid_rowconfigure(0, weight=1)
+          self.left_frame.grid_columnconfigure(0, weight=1)  
 
-          # Text widget for user input (left section)
-          self.input_text = ScrolledText(self.left_frame, font=("Arial", 11))
-          self.input_text.pack(fill="both", expand=True, padx=5, pady=5)
+          # Spell Checker Text Box Label
+          self.sc_textbox_label = ctk.CTkLabel(master=self.left_frame, text="Start by typing or pasting your text...", font=("Arial", 12))
+          self.sc_textbox_label.grid(row=0, column=0, sticky="n", pady=(5, 10))
 
-          # Right frame for suggestions
-          self.right_frame = ctk.CTkFrame(self.horizontal_top_pane, width=300, height=400, corner_radius=10)
-          self.right_frame.pack(side="right", fill="both", expand=True, padx=10, pady=10)
+          # Spell Checker Text Box
+          self.input_text = ctk.CTkTextbox(master=self.left_frame, width=600, height=300, font=("Arial", 14))
+          self.input_text.grid(row=0, column=0, sticky="nsew", padx=10, pady=(40, 10)) 
 
-          self.placeholder_label = ctk.CTkLabel(self.right_frame, text="Did you mean...", font=ctk.CTkFont(size=12))
-          self.placeholder_label.pack(fill="x", pady=5)
+          # Suggestions Frame
+          self.right_frame = ctk.CTkFrame(master=self.top_frame, width=300, height=350)
+          self.right_frame.pack(side="right", fill="both", expand=True, padx=(5, 10), pady=10)
 
-          # Suggestions text box (right section)
-          self.suggestions_text = ScrolledText(self.right_frame, font=("Arial", 10), state="disabled")
-          self.suggestions_text.pack(fill="both", expand=True, padx=5, pady=5)
+          # Configure grid for dynamic resizing
+          self.right_frame.grid_rowconfigure(0, weight=1) 
+          self.right_frame.grid_columnconfigure(0, weight=1)
 
-          # Bottom frame for terminal output
-          self.bottom_frame = ctk.CTkFrame(self.vertical_main_window, width=900, height=200, corner_radius=10)
-          self.bottom_frame.pack(side="bottom", fill="both", expand=True, padx=10, pady=10)
+          # Suggestions Text Box Label
+          self.sg_textbox_label = ctk.CTkLabel(master=self.right_frame, text="Did you mean...", font=("Arial", 12))
+          self.sg_textbox_label.grid(row=0, column=0, sticky="n", pady=(5, 10))
 
-          terminal_label = ctk.CTkLabel(self.bottom_frame, text="Terminal Output", font=ctk.CTkFont(size=12))
-          terminal_label.pack(fill="x", pady=5)
+          # Suggestions Text Box
+          self.suggestions_text = ctk.CTkTextbox(master=self.right_frame, width=230, height=300, font=("Arial", 12))
+          self.suggestions_text.grid(row=0, column=0, sticky="nsew", padx=10, pady=(40, 10)) 
 
-          # Terminal output text box
-          self.terminal_output = ScrolledText(self.bottom_frame, font=("Courier New", 9), bg="black", fg="white", state="disabled")
-          self.terminal_output.pack(fill="both", expand=True, padx=5, pady=5)
-               
+          # Terminal Output Frame
+          self.terminal_frame = ctk.CTkFrame(master=self.bottom_frame, width=900, height=250)
+          self.terminal_frame.pack(side="bottom", fill="both", expand=True, padx=10, pady=10)
+
+          # Terminal Output Label
+          self.terminal_label = ctk.CTkLabel(master=self.terminal_frame, text="Terminal Output", font=("Arial", 12))
+          self.terminal_label.pack(side="top", fill="x", expand=False, pady=(5, 5))  # Label takes only horizontal space
+
+          # Terminal Output Text Box
+          self.terminal_output = ctk.CTkTextbox(master=self.terminal_frame, font=("Courier New", 16), fg_color="black", state="disabled")
+          self.terminal_output.pack(fill="both", expand=True)
+
           # Redirect stdout and stderr to terminal_output
           sys.stdout = TextRedirector(self.terminal_output, "stdout")
           sys.stderr = TextRedirector(self.terminal_output, "stderr")
           self.terminal_output.tag_config("stdout", foreground="white")
           self.terminal_output.tag_config("stderr", foreground="red")
+
+          # Bind the click event to invalid words only
+          self.input_text.tag_bind("invalid", "<Button-1>", self.handle_click)
           
           # Bind text widget to manual or automatic check
           if user_input == "1":
@@ -272,7 +287,7 @@ class SpellChecker:
 
                     # Display suggestions in the suggestion box
                     suggestions = self.get_suggestions(clicked_word)
-                    self.suggestions_text.config(state="normal")
+                    self.suggestions_text.configure(state="normal")
                     self.suggestions_text.delete("1.0", tk.END)
                     if suggestions:
                          self.suggestions_text.insert(tk.END, f"Suggestions for '{clicked_word}':\n")
@@ -280,7 +295,7 @@ class SpellChecker:
                               self.suggestions_text.insert(tk.END, f"• {suggestion}\n")
                     else:
                          self.suggestions_text.insert(tk.END, f"No suggestions for '{clicked_word}'.\n")
-                    self.suggestions_text.config(state="disabled")
+                    self.suggestions_text.configure(state="disabled")
           except Exception as e:
                print(f"Error in handle_click: {e}")
 
