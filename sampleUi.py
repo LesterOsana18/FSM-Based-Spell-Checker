@@ -194,7 +194,7 @@ class SpellChecker:
           self.left_frame.grid_columnconfigure(0, weight=1)  
 
           # Spell Checker Text Box Label
-          self.sc_textbox_label = ctk.CTkLabel(master=self.left_frame, text="Start by typing or pasting your text...", font=("Arial", 12))
+          self.sc_textbox_label = ctk.CTkLabel(master=self.left_frame, text="Start by typing or pasting your text...", font=("Arial", 12), fg_color="transparent")
           self.sc_textbox_label.grid(row=0, column=0, sticky="n", pady=(5, 10))
 
           # Spell Checker Text Box
@@ -218,8 +218,12 @@ class SpellChecker:
           self.suggestions_text.grid(row=0, column=0, sticky="nsew", padx=10, pady=(40, 0)) 
 
           # Suggestions Box Clear Button
-          self.clear_button = ctk.CTkButton(master=self.right_frame, width=230, height=40, text="Clear Suggestions", font=("Arial", 12, "bold"), fg_color="red", hover_color="green", command=self.delete_suggestions)
-          self.clear_button.grid(row=1, column=0, sticky="nsew", padx=10, pady=(10, 10))
+          self.clear_button = ctk.CTkButton(master=self.right_frame, width=100, height=40, text="Clear Suggestions", font=("Arial", 12, "bold"), fg_color="red", hover_color="green", command=self.delete_suggestions)
+          self.clear_button.grid(row=1, column=0, sticky="w", padx=10, pady=(10, 10))
+
+          # Toggle Switch for Dark Mode and Light Mode
+          self.toggle_switch = ctk.CTkSwitch(master=self.right_frame, width=100, height=40, text="Dark Mode", font=("Arial", 12, "bold"), onvalue=1, offvalue=0, command=self.toggle_dark_mode)
+          self.toggle_switch.grid(row=1, column=0, sticky="e", padx=10, pady=(10, 10))
 
           # Terminal Output Frame
           self.terminal_frame = ctk.CTkFrame(master=self.bottom_frame, width=900, height=250)
@@ -227,7 +231,7 @@ class SpellChecker:
 
           # Terminal Output Label
           self.terminal_label = ctk.CTkLabel(master=self.terminal_frame, text="Terminal Output", font=("Arial", 12))
-          self.terminal_label.pack(side="top", fill="x", expand=False, pady=(5, 5))  # Label takes only horizontal space
+          self.terminal_label.pack(side="top", fill="x", expand=False, pady=(5, 5))
 
           # Terminal Output Text Box
           self.terminal_output = ctk.CTkTextbox(master=self.terminal_frame, font=("Courier New", 16), fg_color="black", state="disabled")
@@ -316,6 +320,54 @@ class SpellChecker:
           self.suggestions_text.configure(state="normal")
           self.suggestions_text.delete("1.0", tk.END)
           self.suggestions_text.configure(state="disabled")
+
+     # Toggle dark mode method
+     def toggle_dark_mode(self):
+          val = self.toggle_switch.get()
+          if val:
+               # Set dark mode
+               self.root._set_appearance_mode("dark")
+
+               # Set dark mode for all widgets
+               self.top_frame._set_appearance_mode("dark")
+               self.bottom_frame._set_appearance_mode("dark")
+
+               self.left_frame._set_appearance_mode("dark")
+               self.right_frame._set_appearance_mode("dark")
+               
+               self.input_text._set_appearance_mode("dark")
+               self.suggestions_text._set_appearance_mode("dark")
+               self.terminal_frame._set_appearance_mode("dark")
+               self.terminal_output._set_appearance_mode("dark")
+
+               self.sc_textbox_label._set_appearance_mode("dark")
+               self.sg_textbox_label._set_appearance_mode("dark")
+               self.terminal_label._set_appearance_mode("dark")
+
+               self.clear_button._set_appearance_mode("dark")
+               self.toggle_switch._set_appearance_mode("dark")
+          else:
+               # Set light mode
+               self.root._set_appearance_mode("light")
+
+               # Set light mode for all widgets
+               self.top_frame._set_appearance_mode("light")
+               self.bottom_frame._set_appearance_mode("light")
+
+               self.left_frame._set_appearance_mode("light")
+               self.right_frame._set_appearance_mode("light")
+               
+               self.input_text._set_appearance_mode("light")
+               self.suggestions_text._set_appearance_mode("light")
+               self.terminal_frame._set_appearance_mode("light")
+               self.terminal_output._set_appearance_mode("light")
+
+               self.sc_textbox_label._set_appearance_mode("light")
+               self.sg_textbox_label._set_appearance_mode("light")
+               self.terminal_label._set_appearance_mode("light")
+
+               self.clear_button._set_appearance_mode("light")
+               self.toggle_switch._set_appearance_mode("light")
 
      # Manual check method
      def manual_check(self, event):
