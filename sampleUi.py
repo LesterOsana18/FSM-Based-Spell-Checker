@@ -289,12 +289,14 @@ class SpellChecker:
                     suggestions = self.get_suggestions(clicked_word)
                     self.suggestions_text.configure(state="normal")
                     self.suggestions_text.delete("1.0", tk.END)
+                    
                     if suggestions:
                          self.suggestions_text.insert(tk.END, f"Suggestions for '{clicked_word}':\n")
                          for suggestion in suggestions:
                               self.suggestions_text.insert(tk.END, f"• {suggestion}\n")
                     else:
                          self.suggestions_text.insert(tk.END, f"No suggestions for '{clicked_word}'.\n")
+                    
                     self.suggestions_text.configure(state="disabled")
           except Exception as e:
                print(f"Error in handle_click: {e}")
@@ -328,17 +330,20 @@ class SpellChecker:
                     col_start = start_pos - content.rfind('\n', 0, start_pos) - 1
                     line_end = content[:end_pos].count('\n') + 1
                     col_end = end_pos - content.rfind('\n', 0, end_pos) - 1
-
+                    
                     # Highlight invalid words in red and valid words in black
-                    if clean_word not in word_set:
-                         # Highlight invalid word
-                         self.input_text.tag_add(f"invalid", f"{line_start}.{col_start}", f"{line_end}.{col_end}")
-                         self.input_text.tag_config(f"invalid", foreground="red")
+                    self.highlight_word(last_word, f"{line_start}.{col_start}", f"{line_end}.{col_end}", clean_word not in word_set)
 
-                    else:
-                         # Highlight valid word
-                         self.input_text.tag_add(f"valid_{start_pos}", f"{line_start}.{col_start}", f"{line_end}.{col_end}")
-                         self.input_text.tag_config(f"valid_{start_pos}", foreground="black")
+                    # # Highlight invalid words in red and valid words in black
+                    # if clean_word not in word_set:
+                    #      # Highlight invalid word
+                    #      self.input_text.tag_add(f"invalid", f"{line_start}.{col_start}", f"{line_end}.{col_end}")
+                    #      self.input_text.tag_config(f"invalid", foreground="red")
+
+                    # else:
+                    #      # Highlight valid word
+                    #      self.input_text.tag_add(f"valid_{start_pos}", f"{line_start}.{col_start}", f"{line_end}.{col_end}")
+                    #      self.input_text.tag_config(f"valid_{start_pos}", foreground="black")
 
                     # Execute FSM for the word
                     self.fsm.execute(last_word)
@@ -352,22 +357,26 @@ class SpellChecker:
           # Detect paste: Check if multiple spaces are added at once
           if event.keysym == "Control_L" or len(content.split()) > len(self.processed_words):
                self.processed_words.clear()  # Clear previously processed words
+               self.invalid_words = []  # Add a list to store and track invalid words
                for word in content.split():
                     clean_word = re.sub(r"[^\w'-]", "", word.lower())  # Allow hyphens
                     start_pos = content.find(word)
                     end_pos = start_pos + len(word)
-
+                    
                     # Highlight invalid words
-                    if clean_word not in word_set:
-                         self.input_text.tag_add(f"invalid_{start_pos}", f"1.{start_pos}", f"1.{end_pos}")
-                         self.input_text.tag_config(f"invalid_{start_pos}", foreground="red")
+                    self.highlight_word(word, f"1.{start_pos}", f"1.{end_pos}", clean_word not in word_set)
+
+                    # # Highlight invalid words
+                    # if clean_word not in word_set:
+                    #      self.input_text.tag_add(f"invalid_{start_pos}", f"1.{start_pos}", f"1.{end_pos}")
+                    #      self.input_text.tag_config(f"invalid_{start_pos}", foreground="red")
 
                     # Execute FSM for each word
                     self.fsm.execute(word)
 
                # Update processed words
                self.processed_words = set(content.split())
-               return
+               # return
 
 ## ============================================================ ## RUN THE APPLICATION ## ============================================================ ##
 if __name__ == "__main__":
