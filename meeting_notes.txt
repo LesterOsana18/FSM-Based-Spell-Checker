@@ -161,8 +161,12 @@ ps. feel free to include other words not covered by any of the above categories 
 CURRENT ISSUES FOUND IN THE CODE
 
 [ISSUE #1] The automatic_check method is outdated and lacks the functionalities present in the manual_check method. This needs to be addressed.
-[ISSUE #2] When the window is maximized, the dimensions of the text widget appear odd. The suggestions box becomes larger than the main text field.
-[ISSUE #3] Even after resolving an invalid word, the suggestions on the suggestion box still remains.
+
+[ISSUE #2] When the window is maximized, the dimensions of the text widget appear odd. The suggestions box becomes larger than the main text field. 
+          [SOLVED: Fixed sizing of frames that automatically adjusts based on window size.]
+          
+[ISSUE #3] Even after resolving an invalid word, the suggestions on the suggestion box still remains. 
+          [SOLVED: Used a 'clear suggestions' button.]
 
 P.S Please try using the application itself so you can test for potential issues or errors in the implementation. 
     Kindly update the group if you found anything. Thanks!
