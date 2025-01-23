@@ -177,17 +177,33 @@ class SpellChecker:
           self.root.title("FSM-Based Spell Checker")
           self.root.resizable(width=True, height=True)
 
-          # Top Frame
+          # Top Frame (Parent Frame)
           self.top_frame = ctk.CTkFrame(master=self.root, width=900, height=350)
           self.top_frame.pack(side="top", fill="both", expand=True)
+
+          # Top Frame Left
+          self.top_frame_left = ctk.CTkFrame(master=self.top_frame, width=600, height=350)
+          self.top_frame_left.pack(side="left", fill="both", expand=True)
+
+          # Top Frame Left Label
+          self.top_frame_left_label = ctk.CTkLabel(master=self.top_frame_left, text="Tagalog Spell Checker", font=("Arial", 10), fg_color="transparent")
+          self.top_frame_left_label.pack(side="top", fill="both", expand=False) 
+
+          # Top Frame Right
+          self.top_frame_right = ctk.CTkFrame(master=self.top_frame, width=300, height=350)
+          self.top_frame_right.pack(side="left", fill="both", expand=True)
+
+          # Top Frame Right Label
+          self.top_frame_right_label = ctk.CTkLabel(master=self.top_frame_right, text="Spelling Suggestions", font=("Arial", 10), fg_color="transparent")
+          self.top_frame_right_label.pack(side="top", fill="both", expand=False) 
 
           # Bottom Frame
           self.bottom_frame = ctk.CTkFrame(master=self.root, width=900, height=250)
           self.bottom_frame.pack(side="top", fill="both", expand=True)
 
           # Spell Checker Frame
-          self.left_frame = ctk.CTkFrame(master=self.top_frame, width=600, height=350)
-          self.left_frame.pack(side="left", fill="both", expand=True, padx=(10, 5), pady=10)
+          self.left_frame = ctk.CTkFrame(master=self.top_frame_left, width=600, height=350)
+          self.left_frame.pack(side="left", fill="both", expand=True, padx=(10, 10), pady=(0, 10))
 
           # Configure grid for dynamic resizing
           self.left_frame.grid_rowconfigure(0, weight=1)
@@ -202,8 +218,8 @@ class SpellChecker:
           self.input_text.grid(row=0, column=0, sticky="nsew", padx=10, pady=(40, 10)) 
 
           # Suggestions Frame
-          self.right_frame = ctk.CTkFrame(master=self.top_frame, width=300, height=350)
-          self.right_frame.pack(side="right", fill="both", expand=True, padx=(5, 10), pady=10)
+          self.right_frame = ctk.CTkFrame(master=self.top_frame_right, width=300, height=350)
+          self.right_frame.pack(side="right", fill="both", expand=True, padx=(10, 10), pady=(0, 10))
 
           # Configure grid for dynamic resizing
           self.right_frame.grid_rowconfigure(0, weight=1) 
@@ -218,12 +234,12 @@ class SpellChecker:
           self.suggestions_text.grid(row=0, column=0, sticky="nsew", padx=10, pady=(40, 0)) 
 
           # Suggestions Box Clear Button
-          self.clear_button = ctk.CTkButton(master=self.right_frame, width=100, height=40, text="Clear Suggestions", font=("Arial", 12, "bold"), fg_color="red", hover_color="green", command=self.delete_suggestions)
-          self.clear_button.grid(row=1, column=0, sticky="w", padx=10, pady=(10, 10))
+          self.clear_button = ctk.CTkButton(master=self.right_frame, width=100, height=40, text="Clear Suggestions", font=("Arial", 10, "bold"), fg_color="red", hover_color="green", command=self.delete_suggestions)
+          self.clear_button.grid(row=1, column=0, sticky="sw", padx=10, pady=(10, 10))
 
           # Toggle Switch for Dark Mode and Light Mode
-          self.toggle_switch = ctk.CTkSwitch(master=self.right_frame, width=100, height=40, text="Dark Mode", font=("Arial", 12, "bold"), onvalue=1, offvalue=0, command=self.toggle_dark_mode)
-          self.toggle_switch.grid(row=1, column=0, sticky="e", padx=10, pady=(10, 10))
+          self.toggle_switch = ctk.CTkSwitch(master=self.right_frame, width=100, height=40, text="Dark Mode", font=("Arial", 10, "bold"), onvalue=1, offvalue=0, command=self.toggle_dark_mode)
+          self.toggle_switch.grid(row=1, column=0, sticky="se", padx=10, pady=(10, 10))
 
           # Terminal Output Frame
           self.terminal_frame = ctk.CTkFrame(master=self.bottom_frame, width=900, height=250)
@@ -332,6 +348,8 @@ class SpellChecker:
 
                # Set dark mode for all widgets
                self.top_frame._set_appearance_mode("dark")
+               self.top_frame_left._set_appearance_mode("dark")
+               self.top_frame_right._set_appearance_mode("dark")
                self.bottom_frame._set_appearance_mode("dark")
 
                self.left_frame._set_appearance_mode("dark")
@@ -342,6 +360,8 @@ class SpellChecker:
                self.terminal_frame._set_appearance_mode("dark")
                self.terminal_output._set_appearance_mode("dark")
 
+               self.top_frame_left_label._set_appearance_mode("dark")
+               self.top_frame_right_label._set_appearance_mode("dark")
                self.sc_textbox_label._set_appearance_mode("dark")
                self.sg_textbox_label._set_appearance_mode("dark")
                self.terminal_label._set_appearance_mode("dark")
@@ -354,6 +374,8 @@ class SpellChecker:
 
                # Set light mode for all widgets
                self.top_frame._set_appearance_mode("light")
+               self.top_frame_left._set_appearance_mode("light")
+               self.top_frame_right._set_appearance_mode("light")
                self.bottom_frame._set_appearance_mode("light")
 
                self.left_frame._set_appearance_mode("light")
@@ -364,6 +386,8 @@ class SpellChecker:
                self.terminal_frame._set_appearance_mode("light")
                self.terminal_output._set_appearance_mode("light")
 
+               self.top_frame_left_label._set_appearance_mode("light")
+               self.top_frame_right_label._set_appearance_mode("light")
                self.sc_textbox_label._set_appearance_mode("light")
                self.sg_textbox_label._set_appearance_mode("light")
                self.terminal_label._set_appearance_mode("light")
