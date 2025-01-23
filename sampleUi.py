@@ -295,9 +295,9 @@ class SpellChecker:
 
                     # Display suggestions in the suggestion box
                     suggestions = self.get_suggestions(clicked_word)
-                    self.suggestions_text.configure(state="normal")
                     self.suggestions_text.delete("1.0", tk.END)
-                    
+                    self.suggestions_text.configure(state="normal")
+
                     if suggestions:
                          self.suggestions_text.insert(tk.END, f"Suggestions for '{clicked_word}':\n")
                          for suggestion in suggestions:
