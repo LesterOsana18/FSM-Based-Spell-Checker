@@ -272,9 +272,11 @@ class SpellChecker:
           if is_invalid:
                self.input_text.tag_add("invalid", start_pos, end_pos)
                self.input_text.tag_config("invalid", foreground="red")
-          else:
-               self.input_text.tag_add("valid", start_pos, end_pos)
-               self.input_text.tag_config("valid", foreground="black")
+          
+          # Remove 'else' statement to maintain consistency of text color for both light and dark mode
+          # else:
+               # self.input_text.tag_add("valid", start_pos, end_pos)
+               # self.input_text.tag_config("valid", foreground="black")
      
      # Handle click method
      def handle_click(self, event):
