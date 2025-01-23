@@ -297,7 +297,7 @@ class SpellChecker:
 
                     # Display suggestions in the suggestion box
                     suggestions = self.get_suggestions(clicked_word)
-                    self.suggestions_text.delete("1.0", tk.END)
+                    self.delete_suggestions()
                     self.suggestions_text.configure(state="normal")
 
                     if suggestions:
