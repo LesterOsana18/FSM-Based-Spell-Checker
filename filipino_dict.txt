@@ -257,8 +257,10 @@ akalain
 akay
 akayin
 aki'y
+aki’y
 akin
 akin'y
+akin’y
 aking
 akit
 aklan
@@ -267,6 +269,7 @@ akma
 akmang
 ako
 ako'y
+ako’y
 akong
 aksaya
 aksayado
@@ -290,6 +293,7 @@ alabok
 alad-alad
 alaga
 alaga't
+alaga’t
 alagaan
 alagad
 alagang
@@ -445,6 +449,7 @@ anloague
 ano
 ano-ano
 ano't
+ano’t
 anoman
 anong
 antak
@@ -554,9 +559,11 @@ atay
 atchara
 ate
 ati'y
+ati’y
 atimin
 atin
 atin'y
+atin’y
 ating
 atip
 atipan
@@ -632,6 +639,7 @@ baga
 bagabag
 bagabagin
 bagal
+bagama't
 bagama’t
 bagaman
 bagamat
@@ -877,6 +885,7 @@ batyagin
 baul
 baunan
 bawa't
+bawa’t
 bawal
 bawang
 bawas
@@ -1305,6 +1314,7 @@ buko
 bukod
 bukod-tangi
 bukod-tangi'y
+bukod-tangi’y
 bukod-tanging
 bukol
 bukong
@@ -1659,6 +1669,7 @@ dalawahin
 dalawahing
 dalawampu
 dalawampu't
+dalawampu’t
 dalawampung
 dalawang
 dalawin
@@ -1755,7 +1766,9 @@ datapwa’t
 datapwat
 dati
 dati't
+dati’t
 dati'y
+dati’y
 datihan
 dating
 datirati
@@ -1808,6 +1821,7 @@ determinado
 determinadong
 determinasyon
 'di
+’di
 dibdib
 dibdibin
 dibdibing
@@ -1967,18 +1981,22 @@ disyembre
 disyembreng
 disyerto
 dito
+dito't
 dito’t
 dito'y
+dito’y
 ditong
 diulitin
 diwata
 diwatang
 diyan
 diyan'y
+diyan’y
 diyang
 diyes
 diyos
 diyosa
+do'n
 do’n
 doble
 doble-kara
@@ -1993,8 +2011,10 @@ dominante
 dominanteng
 don
 doo'y
+doo’y
 doon
 doon'y
+doon’y
 doong
 doongan
 doongang
@@ -2392,9 +2412,11 @@ ganire
 ganireng
 ganito
 ganitong
+ganiya't
 ganiya’t
 ganiyan
 ganiyang
+gano'ng
 gano’ng
 ganoon
 gansa
@@ -2403,6 +2425,7 @@ ganti
 gantihan
 gantihang
 ganting
+ganya'y
 ganya’y
 ganyakin
 ganyan
@@ -2466,6 +2489,7 @@ gayat
 gayatin
 gayating
 gayo’y
+gayo'y
 gayon
 gayondin
 gayonding
@@ -2941,6 +2965,7 @@ halimbawa
 halimbawang
 halimuyak
 halina't
+halina’t
 haling
 halinghing
 halinhan
@@ -3431,6 +3456,7 @@ hubaran
 hubarang
 hubo
 hubo't
+hubo’t
 hubog
 hubong
 hubugin
@@ -3667,6 +3693,7 @@ iba
 iba-iba
 iba-ibang
 iba't
+iba’t
 ibaba
 ibabad
 ibabala
@@ -3780,7 +3807,6 @@ idikta
 idiktang
 idinadagdag
 idinagdag
-idinagdag'
 idinidikit
 idinidikta
 idinidiktang
@@ -3969,6 +3995,7 @@ iiwasang
 iiyak
 ika-ika
 ika'y
+ika’y
 ikaaahon
 ikaanim
 ikaapat
@@ -4028,6 +4055,7 @@ ikatatlong
 ikatlo
 ikaw
 ikaw'y
+ikaw’y
 ikawalo
 ikawalong
 ikawing
@@ -4771,6 +4799,7 @@ isa-isahin
 isa-isahing
 isa-isang
 isa't
+isa’t
 isaad
 isaalang-alang
 isabat
@@ -4946,6 +4975,7 @@ itlog
 itlugan
 ito
 ito'y
+ito’y
 itong
 itoon
 itudla
@@ -4996,18 +5026,22 @@ iwayway
 iwisik
 ix
 iya'y
+iya’y
 iyak
 iyakin
 iyaking
 iyan
 iyan'y
+iyan’y
 iyang
 iyanig
 iyawit
 iyo
 iyo'y
+iyo’y
 iyon
 iyon'y
+iyon’y
 iyong
 iyuko
 iyukod
@@ -5019,7 +5053,9 @@ jose
 juan
 ka
 ka't
+ka’t
 ka'y
+ka’y
 kaabalahan
 kaabalahang
 kaagad
@@ -5699,6 +5735,7 @@ kambal
 kambing
 kami
 kami'y
+kami’y
 kamiseta
 kamisetang
 kamison
@@ -5738,7 +5775,9 @@ kanginong
 kangkong
 kanila
 kanila’t
+kanila't
 kanila'y
+kanila’y
 kanilang
 kanin
 kanina
@@ -5767,7 +5806,9 @@ kanugnog
 kanuno-nunoan
 kanunuan
 kanya’t
+kanya't
 kanya'y
+kanya’y
 kanyang
 kanyon
 kapa
@@ -6154,6 +6195,7 @@ kayasan
 kayayari
 kayo
 kayo't
+kayo’t
 kayong
 kaysa
 kayumanggi
@@ -6454,7 +6496,9 @@ kumuto
 kumutog
 kundi
 kundi’t
+kundi't
 kundi’y
+kundi'y
 kundiman
 kundol
 kuneho
@@ -6804,8 +6848,11 @@ libis
 liblib
 libo
 libo't
+libo’t
 libo't-isa
+libo’t-isa
 libo't-labing
+libo’t-labing
 libog
 libong
 libre
@@ -6867,13 +6914,18 @@ lilukan
 lima
 limampu
 limampu't
+limampu’t
 limampu't-isa
+limampu’t-isa
 limampu't-lima
+limampu’t-lima
 limampu't-siyam
+limampu’t-siyam
 limampung
 limang
 limangpu
 limapu't-isa
+limampu’t-isa
 limbag
 limbagin
 limbaging
@@ -8952,6 +9004,7 @@ manangis
 mananso
 manaog
 manapa'y
+manapa’y
 manapat
 manariwa
 manas
@@ -9439,6 +9492,7 @@ mangwika
 mangyamot
 mangyari
 mangyari'y
+mangyari’y
 mangyayamot
 mangyayari
 manhid
@@ -9716,6 +9770,7 @@ manwal
 manya
 manyanita
 manyapa't
+manyapa’t
 manyempo
 manyika
 manyobra
@@ -11696,6 +11751,7 @@ miyerkules-de-senisa
 miyural
 mo
 mo't
+mo’t
 moccasin
 moda
 model
@@ -11781,6 +11837,7 @@ mukto
 muktong
 mula
 mula'tmula
+mula’tmula
 mulaangtipik
 mulakay
 mulangayon
@@ -11800,6 +11857,7 @@ mulhagi
 mulhay
 muli
 muli'tmuli
+muli’tmuli
 mulihan
 mulimbuhay
 muling
@@ -11878,9 +11936,11 @@ muwelye
 muwestra
 muwestrahan
 muyag
+n'yo
 n’yo
 na
 na't
+na’t
 naaabala
 naaabot
 naaadornohan
@@ -14677,7 +14737,9 @@ ngangayngayin
 ngayngay
 ngayngayin
 ngayo't
+nagyo’t
 ngayo'y
+ngayo’y
 ngayon
 ngayong
 ngayupapa
@@ -14741,6 +14803,7 @@ ngunguya
 ngunguyain
 nguni
 nguni't
+nguni’t
 ngunit
 ngunot
 ngupinyo
@@ -15036,6 +15099,7 @@ niyeluhan
 niyeyeluhan
 niyo
 niyo'y
+niyo’y
 niyoduhan
 niyog
 niyomatiks
@@ -15082,9 +15146,11 @@ nonombrahan
 nonominahan
 noo
 noo'y
+noo’y
 nood
 noon
 noon'y
+noon’y
 noong
 noong-urong
 normal
@@ -16066,6 +16132,7 @@ pagka-orihinal
 pagka-panginoon
 pagka-papa
 pagka't
+pagka’t
 pagkabakli
 pagkabalak
 pagkabalam
@@ -19395,6 +19462,7 @@ parmasya
 parmasyutika
 parmasyutiko
 paro't
+paro’t
 parodi
 parody
 parodya
@@ -19406,7 +19474,9 @@ parol
 parola
 parolero
 paroo't
+paroo’t
 paroo't-parito
+paroo’t-parito
 paroon-dili
 paroonan
 paroroonan
@@ -23386,10 +23456,15 @@ pitson
 pituhan
 pitumpu
 pitumpu't
+pitumpu’t
 pitumpu't-isa
+pitumpu’t-isa
 pitumpu't-pito
+pitumpu’t-pito
 pitumpu't-tatlo
+pitumpu’t-tatlo
 pitumpu't-walo
+pitumpu’t-walo
 pitumpung
 pitundaan
 piyador
@@ -23494,6 +23569,7 @@ plural
 plutonium
 po
 po’t
+po't
 poblacion
 poblasyon
 pobre
@@ -23841,6 +23917,7 @@ psikolohia
 psikolohiko
 psikyatria
 pu't
+pu’t
 pua
 publikasyon
 publiko
@@ -24387,6 +24464,7 @@ punlaan
 punlo
 puno
 puno't
+puno’t
 punong
 punong-bayan
 punong-guro
@@ -24716,6 +24794,7 @@ quezon
 quiapo
 quirino
 raa't
+raa’t
 raan
 raang
 rabbit
@@ -25204,6 +25283,7 @@ riyan
 riyang
 riyesgo
 rizal
+ro'n
 ro’n
 robot
 rocket
@@ -25268,7 +25348,9 @@ ruwisenyor
 sa
 sa-panahon
 sa'n
+sa’n
 sa'yo
+sa’yo
 saa
 saad
 saak
@@ -26115,6 +26197,7 @@ sapa
 sapad
 sapagka
 sapagka't
+sapagka’t
 sapagkat
 sapahin
 sapak
@@ -26669,6 +26752,7 @@ saynatin
 saynete
 sayo
 sayo'y
+sayo’y
 sayod
 sayong
 sayote
@@ -27024,6 +27108,7 @@ sikyatria
 sila
 sila-sila
 sila'y
+sila’y
 silab
 silaba
 silaban
@@ -27937,7 +28022,8 @@ sinlaki
 sinli
 sino
 sino-sino
-sino't 
+sino't
+sino’t
 sinok
 sinombrahan
 sinonda
@@ -28419,6 +28505,7 @@ siwang
 siwi
 siya
 siya’t
+siya't
 siya'y
 siya’y
 siyahan
@@ -28427,9 +28514,13 @@ siyaman
 siyamnalibo
 siyamnapu
 siyamnapu't
+siyamnapu’t
 siyamnapu't-isa
+siyamnapu’t-isa
 siyamnapu't-lima
+siyamnapu’t-lima
 siyamnapu't-siyam
+siyamnapu’t-siyam
 siyamnapung
 siyamnaraan
 siyampu
@@ -30874,10 +30965,15 @@ tatluhin
 tatluhing
 tatlumpu
 tatlumpu't
+tatlumpu’t
 tatlumpu't-isa
+tatlumpu’t-isa
 tatlumpu't-pito
+tatlumpu’t-pito
 tatlumpu't-tatlo
+tatlumpu’t-tatlo
 tatlumpu't-walo
+tatlumpu’t-walo
 tatlumpuin
 tatlumpung
 tatoo
@@ -30956,6 +31052,7 @@ tayangtang
 tayka
 tayo
 tayo'y
+tayo’y
 tayog
 tayom
 tayon
@@ -35009,6 +35106,7 @@ walang-mantsa
 walang-mintis
 walang-muang
 walang-mula't
+walang-mula’t
 walang-muwang
 walang-nakatira
 walang-nalalaman
@@ -35136,9 +35234,13 @@ waluhan
 waluhin
 walumpu
 walumpu't
+walumpu’t
 walumpu't-apat
+walumpu’t-apat
 walumpu't-isa
+walumpu’t-isa
 walumpu't-walo
+walumpu’t-walo
 walumpung
 walundaan
 walunlibo
