@@ -288,11 +288,6 @@ class SpellChecker:
           if is_invalid:
                self.input_text.tag_add("invalid", start_pos, end_pos)
                self.input_text.tag_config("invalid", foreground="red")
-          
-          # Remove 'else' statement to maintain consistency of text color for both light and dark mode
-          # else:
-               # self.input_text.tag_add("valid", start_pos, end_pos)
-               # self.input_text.tag_config("valid", foreground="black")
      
      # Handle click method
      def handle_click(self, event):
@@ -423,17 +418,6 @@ class SpellChecker:
                     # Highlight invalid words in red and valid words in black
                     self.highlight_word(last_word, f"{line_start}.{col_start}", f"{line_end}.{col_end}", clean_word not in word_set)
 
-                    # # Highlight invalid words in red and valid words in black
-                    # if clean_word not in word_set:
-                    #      # Highlight invalid word
-                    #      self.input_text.tag_add(f"invalid", f"{line_start}.{col_start}", f"{line_end}.{col_end}")
-                    #      self.input_text.tag_config(f"invalid", foreground="red")
-
-                    # else:
-                    #      # Highlight valid word
-                    #      self.input_text.tag_add(f"valid_{start_pos}", f"{line_start}.{col_start}", f"{line_end}.{col_end}")
-                    #      self.input_text.tag_config(f"valid_{start_pos}", foreground="black")
-
                     # Execute FSM for the word
                     self.fsm.execute(last_word)
                     self.processed_words.add(last_word)
@@ -454,11 +438,6 @@ class SpellChecker:
                     
                     # Highlight invalid words
                     self.highlight_word(word, f"1.{start_pos}", f"1.{end_pos}", clean_word not in word_set)
-
-                    # # Highlight invalid words
-                    # if clean_word not in word_set:
-                    #      self.input_text.tag_add(f"invalid_{start_pos}", f"1.{start_pos}", f"1.{end_pos}")
-                    #      self.input_text.tag_config(f"invalid_{start_pos}", foreground="red")
 
                     # Execute FSM for each word
                     self.fsm.execute(word)
