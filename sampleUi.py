@@ -446,22 +446,29 @@ class SpellChecker:
                if clean_word in self.processed_words:
                     continue
 
-               # Find the start and end positions of the word
-               start_pos = content.rfind(word)
-               end_pos = start_pos + len(word)
+               # Find all occurrences of the word
+               start_pos = 0
+               while start_pos != -1:
+                    start_pos = content.find(word, start_pos)
+                    if start_pos == -1:
+                         break
 
-               # Calculate line and column positions for multi-line text
-               line_start = content[:start_pos].count('\n') + 1
-               col_start = start_pos - content.rfind('\n', 0, start_pos) - 1
-               line_end = content[:end_pos].count('\n') + 1
-               col_end = end_pos - content.rfind('\n', 0, end_pos) - 1
-                    
-               # Highlight invalid words in red and valid words in black
-               self.highlight_word(word, f"{line_start}.{col_start}", f"{line_end}.{col_end + 1}", clean_word not in word_set)
+                    end_pos = start_pos + len(word)
 
-               # If the word is invalid, track it for potential splitting
-               if clean_word not in word_set:
-                    self.invalid_words.append(word)
+                    # Calculate line and column positions for multi-line text
+                    line_start = content[:start_pos].count('\n') + 1
+                    col_start = start_pos - content.rfind('\n', 0, start_pos) - 1
+                    line_end = content[:end_pos].count('\n') + 1
+                    col_end = end_pos - content.rfind('\n', 0, end_pos) - 1
+
+                    # Highlight invalid words in red and valid words in black
+                    self.highlight_word(word, f"{line_start}.{col_start}", f"{line_end}.{col_end + 1}", clean_word not in word_set)
+
+                    # If the word is invalid, track it for potential splitting
+                    if clean_word not in word_set:
+                         self.invalid_words.append(word)
+
+                    start_pos += len(word)
 
                # Execute FSM for the word
                self.fsm.execute(clean_word)
@@ -469,7 +476,7 @@ class SpellChecker:
                # Mark the word as processed
                self.processed_words.add(clean_word)
 
-           # Check split words if a space was just entered
+          # Check split words if a space was just entered
           if event.char == " ":
                 # Get the index of the cursor
                cursor_index = self.input_text.index(tk.INSERT)
@@ -512,7 +519,6 @@ class SpellChecker:
 
                # Clear invalid words after rechecking
                self.invalid_words.clear()
-
 
 ## ============================================================ ## RUN THE APPLICATION ## ============================================================ ##
 if __name__ == "__main__":
