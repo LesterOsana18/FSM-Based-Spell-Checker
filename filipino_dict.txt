@@ -1830,7 +1830,6 @@ determinadong
 determinasyon
 'di
 ’di
-dibdib
 dibdibin
 dibdibing
 didal
@@ -3058,6 +3057,7 @@ hapon
 hapong
 hapunan
 hapunang
+harana
 harang
 harangin
 haranging
@@ -8507,6 +8507,7 @@ maipaghihintulot
 maipagkakaila
 maipahayag
 maipakita
+maipaliwanag
 maipapalit
 mairog
 mairogin
