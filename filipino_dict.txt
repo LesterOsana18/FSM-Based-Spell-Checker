@@ -1807,7 +1807,7 @@ detalyadong
 determinado
 determinadong
 determinasyon
-di
+'di
 dibdib
 dibdibin
 dibdibing
@@ -8372,6 +8372,10 @@ mahuling
 mahulog
 mahusay
 mahusayin
+maiba
+maibang
+maiiba
+maiibang
 maibabalik
 maibigan
 maibsan
