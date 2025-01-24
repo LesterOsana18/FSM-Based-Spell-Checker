@@ -161,6 +161,8 @@ ps. feel free to include other words not covered by any of the above categories 
 CURRENT ISSUES FOUND IN THE CODE
 
 [ISSUE #1] The automatic_check method is outdated and lacks the functionalities present in the manual_check method. This needs to be addressed.
+          [SOLVED: Updated the automatic_check method to include the functionalities present in the manual_check method.]
+          [Pending approval: Please review the changes to confirm if the update is sufficient or if further adjustments are needed.]
 
 [ISSUE #2] When the window is maximized, the dimensions of the text widget appear odd. The suggestions box becomes larger than the main text field. 
           [SOLVED: Fixed sizing of frames that automatically adjusts based on window size.]
