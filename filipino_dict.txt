@@ -7219,6 +7219,7 @@ lutusin
 luwad
 luwagan
 luwalhati
+luwalhati't
 luwang
 luwat
 luwatan
@@ -11416,6 +11417,8 @@ mawiwili
 mawiwiling
 mawo
 may
+ma'y
+ma’y
 may-akda
 may-ari
 may-gulong
@@ -11750,6 +11753,8 @@ miyerkules
 miyerkules-de-senisa
 miyural
 mo
+mo'y
+mo’y
 mo't
 mo’t
 moccasin
