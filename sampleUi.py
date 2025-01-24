@@ -440,7 +440,7 @@ class SpellChecker:
                     continue
 
                # Clean the word (allow hyphens and apostrophes)
-               clean_word = re.sub(r"[^\w'-]", "", word.lower())
+               clean_word = re.sub(r"[^\w’'-]", "", word.lower())
 
                # Skip already processed words
                if clean_word in self.processed_words:
@@ -490,7 +490,7 @@ class SpellChecker:
                          # Recheck only this word after splitting
                          sub_words = word.split()
                          for sub_word in sub_words:
-                              clean_sub_word = re.sub(r"[^\w'-]", "", sub_word.lower())
+                              clean_sub_word = re.sub(r"[^\w’'-]", "", sub_word.lower())
 
                               # Find positions for highlighting
                               start_pos = line_content.find(sub_word)
