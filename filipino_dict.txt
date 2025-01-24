@@ -600,6 +600,12 @@ ayupan
 ayusin
 ayusing
 ba
+ba’ko
+ba'ko
+ba’yan
+ba'yan
+ba’t
+ba't
 baakin
 baba
 babaan
@@ -1572,6 +1578,8 @@ cordillera
 cotabato
 cristo
 cruz
+da’t
+da't
 daan
 daang
 dabog
@@ -2289,6 +2297,8 @@ florida
 gaan
 gaang
 gaano
+ga’no
+ga'no
 gaanong
 gabay
 gabi
@@ -6339,6 +6349,10 @@ kitid
 kitiran
 klaus
 ko
+ko’ng
+ko'ng
+ko’t
+ko't
 kodigo
 kodigong
 kokak
@@ -11928,6 +11942,7 @@ musikera
 musikero
 muslim
 musmos
+musta
 mutain
 mutiktik
 muton
@@ -11944,6 +11959,8 @@ muyag
 n'yo
 n’yo
 na
+na’ko
+na'ko
 na't
 na’t
 naaabala
@@ -14657,6 +14674,8 @@ nauutal
 nauuwido
 navotas
 nawa
+nawa’y
+nawa'y
 nawa-nawa
 nawaglit
 nawakli
@@ -15367,6 +15386,8 @@ oy
 oyayi
 ozamiz
 pa
+pa’t
+pa't
 pa-jesus
 paa
 paaabantihin
@@ -26007,6 +26028,8 @@ samyo
 samyuhin
 san
 sana
+sana’y
+sana'y
 sanang
 sanap
 sanatorium
@@ -29638,6 +29661,10 @@ swipistik
 switch
 syento
 syete
+ta’s
+ta's
+‘to
+'to
 taad
 taal
 taan
@@ -34905,6 +34932,8 @@ waak
 waang
 wadwad
 wag
+‘wag
+'wag
 wagas
 wagwag
 wagwagan
