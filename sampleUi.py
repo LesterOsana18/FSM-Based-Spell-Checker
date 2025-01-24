@@ -472,7 +472,6 @@ class SpellChecker:
                # Mark the word as processed
                self.processed_words.add(clean_word)
 
-
 ## ============================================================ ## RUN THE APPLICATION ## ============================================================ ##
 if __name__ == "__main__":
      spell_checker = SpellChecker()
