@@ -430,13 +430,23 @@ class SpellChecker:
 
           # Detect paste: Check if multiple spaces are added at once
           if event.keysym == "Control_L" or len(content.split()) > len(self.processed_words):
-               self.processed_words.clear()  # Clear previously processed words
                self.invalid_words = []  # Track invalid words
 
           # Track the current position for highlighting
-          for word in content.split():
+          start_index = "1.0"  # Start from the beginning of the text widget
+          while True:
+               # Find the next word in the text widget
+               start_index = self.input_text.search(r"\m\w+\M", start_index, stopindex=tk.END, regexp=True)
+               if not start_index:
+                    break
+
+               # Get the word and its end position
+               word_end_index = self.input_text.index(f"{start_index} wordend")
+               word = self.input_text.get(start_index, word_end_index).strip()
+
                # Skip single-character words for efficiency
                if len(word) <= 1:
+                    start_index = word_end_index  # Move to the next word
                     continue
 
                # Clean the word (allow hyphens and apostrophes)
@@ -444,37 +454,25 @@ class SpellChecker:
 
                # Skip already processed words
                if clean_word in self.processed_words:
+                    start_index = word_end_index  # Move to the next word
                     continue
 
-               # Find all occurrences of the word
-               start_pos = 0
-               while start_pos != -1:
-                    start_pos = content.find(word, start_pos)
-                    if start_pos == -1:
-                         break
+               # Highlight invalid words in red and valid words in black
+               # self.highlight_word(word, f"{line_start}.{col_start}", f"{line_end}.{col_end + 1}", clean_word not in word_set)
 
-                    end_pos = start_pos + len(word)
+               # Highlight invalid words in red and valid words in black
+               is_invalid = clean_word not in word_set
+               self.highlight_word(word, start_index, word_end_index, is_invalid)
 
-                    # Calculate line and column positions for multi-line text
-                    line_start = content[:start_pos].count('\n') + 1
-                    col_start = start_pos - content.rfind('\n', 0, start_pos) - 1
-                    line_end = content[:end_pos].count('\n') + 1
-                    col_end = end_pos - content.rfind('\n', 0, end_pos) - 1
-
-                    # Highlight invalid words in red and valid words in black
-                    self.highlight_word(word, f"{line_start}.{col_start}", f"{line_end}.{col_end + 1}", clean_word not in word_set)
-
-                    # If the word is invalid, track it for potential splitting
-                    if clean_word not in word_set:
-                         self.invalid_words.append(word)
-
-                    start_pos += len(word)
+               # If the word is invalid, track it for suggestions
+               if is_invalid and word not in self.invalid_words:
+                    self.invalid_words.append(word)
 
                # Execute FSM for the word
                self.fsm.execute(clean_word)
 
-               # Mark the word as processed
-               self.processed_words.add(clean_word)
+               # Move to the next word
+               start_index = word_end_index
 
           # Check split words if a space was just entered
           if event.char == " ":
