@@ -431,20 +431,35 @@ class SpellChecker:
           if event.keysym == "Control_L" or len(content.split()) > len(self.processed_words):
                self.processed_words.clear()  # Clear previously processed words
                self.invalid_words = []  # Add a list to store and track invalid words
-               for word in content.split():
-                    clean_word = re.sub(r"[^\w'-]", "", word.lower())  # Allow hyphens
-                    start_pos = content.find(word)
-                    end_pos = start_pos + len(word)
-                    
-                    # Highlight invalid words
-                    self.highlight_word(word, f"1.{start_pos}", f"1.{end_pos}", clean_word not in word_set)
 
-                    # Execute FSM for each word
-                    self.fsm.execute(word)
+               # Track the current position in the content
+               current_line = 1
+               current_col = 0
 
-               # Update processed words
-               self.processed_words = set(content.split())
-               # return
+          for word in content.split():
+               clean_word = re.sub(r"[^\w'-]", "", word.lower())  # Allow hyphens
+               start_pos = content.find(word)
+               end_pos = start_pos + len(word)
+
+               # Recalculate line and column positions
+               lines_up_to_start = content[:start_pos].split("\n")
+               current_line = len(lines_up_to_start)
+               current_col = len(lines_up_to_start[-1])
+
+               # Highlight invalid words
+               self.highlight_word(
+                    word,
+                    f"{current_line}.{current_col}",
+                    f"{current_line}.{current_col + len(word)}",
+                    clean_word not in word_set,
+               )
+
+               # Execute FSM for each word
+               self.fsm.execute(word)
+
+          # Update processed words
+          self.processed_words = set(content.split())
+          
 
 ## ============================================================ ## RUN THE APPLICATION ## ============================================================ ##
 if __name__ == "__main__":
