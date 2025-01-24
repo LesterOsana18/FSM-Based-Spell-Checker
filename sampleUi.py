@@ -447,7 +447,7 @@ class SpellChecker:
                     continue
 
                # Find the start and end positions of the word
-               start_pos = content.find(word)
+               start_pos = content.rfind(word)
                end_pos = start_pos + len(word)
 
                # Calculate line and column positions for multi-line text
