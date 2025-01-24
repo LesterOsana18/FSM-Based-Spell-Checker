@@ -403,7 +403,7 @@ class SpellChecker:
                # Extract the last word, clean it, and process
                if words and len(words[-1]) > 1:  # Only process words longer than one character
                     last_word = words[-1]
-                    clean_word = re.sub(r"[^\w’'-]", "", last_word.lower())  # Allow hyphens and apostrophes
+                    clean_word = re.sub(r"[^\w’'-]", "", last_word.lower()) # Allow ’, ', and hyphens
 
                     # Find the start and end positions of the word
                     start_pos = content.rfind(last_word)
