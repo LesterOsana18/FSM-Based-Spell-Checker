@@ -451,26 +451,68 @@ class SpellChecker:
                end_pos = start_pos + len(word)
 
                # Calculate line and column positions for multi-line text
-               lines_up_to_start = content[:start_pos].split("\n")
-               line_start = len(lines_up_to_start)
-               col_start = len(lines_up_to_start[-1])
-               line_end = line_start
-               col_end = col_start + len(word)
+               line_start = content[:start_pos].count('\n') + 1
+               col_start = start_pos - content.rfind('\n', 0, start_pos) - 1
+               line_end = content[:end_pos].count('\n') + 1
+               col_end = end_pos - content.rfind('\n', 0, end_pos) - 1
+                    
+               # Highlight invalid words in red and valid words in black
+               self.highlight_word(word, f"{line_start}.{col_start}", f"{line_end}.{col_end + 1}", clean_word not in word_set)
 
-               # Highlight invalid words
-               is_invalid = clean_word not in word_set
-               self.highlight_word(
-                    word,
-                    f"{line_start}.{col_start}",
-                    f"{line_end}.{col_end}",
-                    is_invalid,
-               )
+               # If the word is invalid, track it for potential splitting
+               if clean_word not in word_set:
+                    self.invalid_words.append(word)
 
                # Execute FSM for the word
                self.fsm.execute(clean_word)
 
                # Mark the word as processed
                self.processed_words.add(clean_word)
+
+           # Check split words if a space was just entered
+          if event.char == " ":
+                # Get the index of the cursor
+               cursor_index = self.input_text.index(tk.INSERT)
+               cursor_line, cursor_col = map(int, cursor_index.split('.'))
+
+               # Determine the line content and the word being edited
+               line_start_index = f"{cursor_line}.0"
+               line_end_index = f"{cursor_line}.end"
+               line_content = self.input_text.get(line_start_index, line_end_index).strip()
+
+               # Split the line and find the word where the space was entered
+               words = line_content.split()
+               for i, word in enumerate(words):
+                    word_start_col = line_content.find(word)
+                    word_end_col = word_start_col + len(word)
+
+                    if word_start_col <= cursor_col <= word_end_col + 1:
+                         # Recheck only this word after splitting
+                         sub_words = word.split()
+                         for sub_word in sub_words:
+                              clean_sub_word = re.sub(r"[^\w'-]", "", sub_word.lower())
+
+                              # Find positions for highlighting
+                              start_pos = line_content.find(sub_word)
+                              end_pos = start_pos + len(sub_word)
+                              line_start = cursor_line
+                              col_start = start_pos
+                              col_end = end_pos
+
+                              # Highlight the new word
+                              is_invalid = clean_sub_word not in word_set
+                              self.highlight_word(sub_word, f"{line_start}.{col_start}", f"{line_start}.{col_end}", is_invalid)
+
+                              # Execute FSM for the sub-word
+                              self.fsm.execute(clean_sub_word)
+
+                              # Mark the sub-word as processed
+                              self.processed_words.add(clean_sub_word)
+                         break  # Only process the word where the space was entered
+
+               # Clear invalid words after rechecking
+               self.invalid_words.clear()
+
 
 ## ============================================================ ## RUN THE APPLICATION ## ============================================================ ##
 if __name__ == "__main__":
