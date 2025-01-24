@@ -74,7 +74,7 @@ class StartState(State):
      # Execute method
      def execute(self, word):
           print("\n[TRANSITION]: Start -> Validating")
-          clean_word = re.sub(r"[^\w-]", "", word.lower()) # Added hyphen to allow hyphenated words
+          clean_word = re.sub(r"[^\w’'-]", "", word.lower()) # Added hyphen to allow hyphenated words
 
           if clean_word in word_set:
                print("[TRANSITION]: Validating -> Valid")
