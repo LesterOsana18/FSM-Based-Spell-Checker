@@ -424,42 +424,54 @@ class SpellChecker:
      
      # Automatic check method
      def automatic_check(self, event):
+          """Automatically check the validity of all words in the content and highlight invalid words."""
           # Get the current content of the text widget
           content = self.input_text.get("1.0", tk.END).strip()
 
           # Detect paste: Check if multiple spaces are added at once
           if event.keysym == "Control_L" or len(content.split()) > len(self.processed_words):
                self.processed_words.clear()  # Clear previously processed words
-               self.invalid_words = []  # Add a list to store and track invalid words
+               self.invalid_words = []  # Track invalid words
 
-               # Track the current position in the content
-               current_line = 1
-               current_col = 0
-
+          # Track the current position for highlighting
           for word in content.split():
-               clean_word = re.sub(r"[^\w'-]", "", word.lower())  # Allow hyphens
+               # Skip single-character words for efficiency
+               if len(word) <= 1:
+                    continue
+
+               # Clean the word (allow hyphens and apostrophes)
+               clean_word = re.sub(r"[^\w'-]", "", word.lower())
+
+               # Skip already processed words
+               if clean_word in self.processed_words:
+                    continue
+
+               # Find the start and end positions of the word
                start_pos = content.find(word)
                end_pos = start_pos + len(word)
 
-               # Recalculate line and column positions
+               # Calculate line and column positions for multi-line text
                lines_up_to_start = content[:start_pos].split("\n")
-               current_line = len(lines_up_to_start)
-               current_col = len(lines_up_to_start[-1])
+               line_start = len(lines_up_to_start)
+               col_start = len(lines_up_to_start[-1])
+               line_end = line_start
+               col_end = col_start + len(word)
 
                # Highlight invalid words
+               is_invalid = clean_word not in word_set
                self.highlight_word(
                     word,
-                    f"{current_line}.{current_col}",
-                    f"{current_line}.{current_col + len(word)}",
-                    clean_word not in word_set,
+                    f"{line_start}.{col_start}",
+                    f"{line_end}.{col_end}",
+                    is_invalid,
                )
 
-               # Execute FSM for each word
-               self.fsm.execute(word)
+               # Execute FSM for the word
+               self.fsm.execute(clean_word)
 
-          # Update processed words
-          self.processed_words = set(content.split())
-          
+               # Mark the word as processed
+               self.processed_words.add(clean_word)
+
 
 ## ============================================================ ## RUN THE APPLICATION ## ============================================================ ##
 if __name__ == "__main__":
