@@ -424,99 +424,77 @@ class SpellChecker:
      
      # Automatic check method
      def automatic_check(self, event):
-          """Automatically check the validity of all words in the content and highlight invalid words."""
           # Get the current content of the text widget
           content = self.input_text.get("1.0", tk.END).strip()
 
           # Detect paste: Check if multiple spaces are added at once
           if event.keysym == "Control_L" or len(content.split()) > len(self.processed_words):
-               self.invalid_words = []  # Track invalid words
+               self.processed_words.clear()  # Clear previously processed words
+               self.invalid_words = []  # Add a list to store and track invalid words
 
-          # Track the current position for highlighting
-          start_index = "1.0"  # Start from the beginning of the text widget
-          while True:
-               # Find the next word in the text widget
-               start_index = self.input_text.search(r"\m\w+\M", start_index, stopindex=tk.END, regexp=True)
-               if not start_index:
-                    break
+               # Process each word in the pasted text
+               for word in content.split():
+                    clean_word = re.sub(r"[^\w'’\-]", "", word.lower())  # Allow hyphens
+                    start_pos = content.find(word)
+                    end_pos = start_pos + len(word)
 
-               # Get the word and its end position
-               word_end_index = self.input_text.index(f"{start_index} wordend")
-               word = self.input_text.get(start_index, word_end_index).strip()
+                    # Calculate line and column positions for multi-line text
+                    line_start = content[:start_pos].count('\n') + 1
+                    col_start = start_pos - content.rfind('\n', 0, start_pos) - 1
+                    line_end = content[:end_pos].count('\n') + 1
+                    col_end = end_pos - content.rfind('\n', 0, end_pos) - 1
 
-               # Skip single-character words for efficiency
-               if len(word) <= 1:
-                    start_index = word_end_index  # Move to the next word
-                    continue
+                    # Highlight invalid words
+                    self.highlight_word(word, f"{line_start}.{col_start}", f"{line_end}.{col_end}", clean_word not in word_set)
 
-               # Clean the word (allow hyphens and apostrophes)
-               clean_word = re.sub(r"[^\w’'-]", "", word.lower())
+                    # Run FSM for the current word
+                    self.fsm.execute(word)
 
-               # Skip already processed words
-               if clean_word in self.processed_words:
-                    start_index = word_end_index  # Move to the next word
-                    continue
+               # Save the initial state of words in the pasted text
+               self.processed_words = set(content.split())
 
-               # Highlight invalid words in red and valid words in black
-               # self.highlight_word(word, f"{line_start}.{col_start}", f"{line_end}.{col_end + 1}", clean_word not in word_set)
+               # Start monitoring for edits
+               self.monitor_edits()
 
-               # Highlight invalid words in red and valid words in black
-               is_invalid = clean_word not in word_set
-               self.highlight_word(word, start_index, word_end_index, is_invalid)
+     def monitor_edits(self):
+          """Monitor edits in the text widget and run FSM for edited words."""
+          # Get the current content of the text widget
+          current_content = self.input_text.get("1.0", tk.END).strip()
+          current_words = {}
+               
+          # Build a dictionary of words with their positions
+          for match in re.finditer(r"(?:^|(?<=\s))['’\-]*[\w]+(?:['’\-]+[\w]+)*['’\-]*(?=$|\s)", current_content):
+               word = match.group()
+               start_pos = match.start()
+               current_words[start_pos] = word
 
-               # If the word is invalid, track it for suggestions
-               if is_invalid and word not in self.invalid_words:
-                    self.invalid_words.append(word)
+          # Compare current words with previously processed words
+          edited_words = {
+               pos: word for pos, word in current_words.items()
+               if pos not in self.processed_words or self.processed_words.get(pos) != word
+          }
 
-               # Execute FSM for the word
-               self.fsm.execute(clean_word)
+          # Process only the edited words
+          if edited_words:
+               for start_pos, word in edited_words.items():
+                    clean_word = re.sub(r"[^\w'’\-]", "", word.lower())  # Allow hyphens and apostrophes
+                    end_pos = start_pos + len(word)
 
-               # Move to the next word
-               start_index = word_end_index
+                    # Calculate line and column positions
+                    line_start = current_content[:start_pos].count('\n') + 1
+                    col_start = start_pos - current_content.rfind('\n', 0, start_pos) - 1
+                    line_end = current_content[:end_pos].count('\n') + 1
+                    col_end = end_pos - current_content.rfind('\n', 0, end_pos) - 1
 
-          # Check split words if a space was just entered
-          if event.char == " ":
-                # Get the index of the cursor
-               cursor_index = self.input_text.index(tk.INSERT)
-               cursor_line, cursor_col = map(int, cursor_index.split('.'))
+                    # Highlight the word and execute FSM
+                    self.highlight_word(word, f"{line_start}.{col_start}", f"{line_end}.{col_end}", clean_word not in word_set)
+                    self.fsm.execute(word)
 
-               # Determine the line content and the word being edited
-               line_start_index = f"{cursor_line}.0"
-               line_end_index = f"{cursor_line}.end"
-               line_content = self.input_text.get(line_start_index, line_end_index).strip()
+          # Update processed words with current positions and content
+          self.processed_words = current_words
 
-               # Split the line and find the word where the space was entered
-               words = line_content.split()
-               for i, word in enumerate(words):
-                    word_start_col = line_content.find(word)
-                    word_end_col = word_start_col + len(word)
-
-                    if word_start_col <= cursor_col <= word_end_col + 1:
-                         # Recheck only this word after splitting
-                         sub_words = word.split()
-                         for sub_word in sub_words:
-                              clean_sub_word = re.sub(r"[^\w’'-]", "", sub_word.lower())
-
-                              # Find positions for highlighting
-                              start_pos = line_content.find(sub_word)
-                              end_pos = start_pos + len(sub_word)
-                              line_start = cursor_line
-                              col_start = start_pos
-                              col_end = end_pos
-
-                              # Highlight the new word
-                              is_invalid = clean_sub_word not in word_set
-                              self.highlight_word(sub_word, f"{line_start}.{col_start}", f"{line_start}.{col_end}", is_invalid)
-
-                              # Execute FSM for the sub-word
-                              self.fsm.execute(clean_sub_word)
-
-                              # Mark the sub-word as processed
-                              self.processed_words.add(clean_sub_word)
-                         break  # Only process the word where the space was entered
-
-               # Clear invalid words after rechecking
-               self.invalid_words.clear()
+          # Continue monitoring after a short delay
+          self.input_text.after(100, self.monitor_edits)     
 
 ## ============================================================ ## RUN THE APPLICATION ## ============================================================ ##
 if __name__ == "__main__":
