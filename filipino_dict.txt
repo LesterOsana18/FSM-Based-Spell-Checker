@@ -6205,6 +6205,8 @@ kayas
 kayasan
 kayayari
 kayo
+kayo'y
+kayo’y
 kayo't
 kayo’t
 kayong
@@ -31167,7 +31169,6 @@ tenedor
 tenedor-de-libro
 teneduria
 tenedurin
-tenga
 tennis
 tenor
 tension
