@@ -17,19 +17,21 @@ A Python-based spell checker application designed to detect and correct misspell
   - Modern interface with resizable frames and a toggle switch for light/dark mode.
   - Includes a terminal output box for tracking system transitions and states.
 
-🇵🇭 **Support for Tagalog Words**:
+📖 **Support for Tagalog Words**:
   - Built-in support for a Tagalog dictionary loaded from `filipino_dict.txt`.
 
 ---
 
 ## Installation
-1. Clone this repository:
-   ```bash
-   git clone <repository_url>
+Clone this repository:
+``` 
+bash
+git clone <repository_url>
+```
 
 ## Dependencies
-
 This program requires several Python libraries. If you encounter missing dependencies when running the program, please install them as prompted in the terminal using the following command:
-
-```bash
+```
+bash
 pip install <missing_dependency_name>
+```
