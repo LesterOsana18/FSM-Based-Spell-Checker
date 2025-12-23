@@ -108,14 +108,6 @@ def test_invalid_word():
 if __name__ == "__main__":
     fsm = create_test_fsm()
 
-    print("\n[Processing 'kumusta '] ")
-    fsm.process_text_by_letter("kumusta ")
-    fsm.print_transition_log()  # Log cleared after this call
-
-    print("\n[Processing 'hello!'] ")
-    fsm.process_text_by_letter("hello!")
-    fsm.print_transition_log()
-
     # Run Unit Tests
     test_valid_word()
     test_invalid_word()
