@@ -84,7 +84,7 @@ class InvalidWordState(State):
 # ========== Build Trie ========== #
 word_trie = Trie()
 
-DICT_PATH = "filipino_dict.txt"
+DICT_PATH = "tagalog_dict.txt"
 
 try:
     with open(DICT_PATH, encoding="utf-8") as file:
@@ -136,7 +136,7 @@ if __name__ == "__main__":
 
     # Test batch processing of full sentences
     print("\n[Batch Processing Test]")
-    sentence = "kumusta hello araw salamat goodbye"
+    sentence = "Ang taong hindi marunong magmahal sa sariling wika ay higit pa sa mabaho at malansang isda. Edukasyon ang susi sa pag-unlad."
     fsm.process_text_in_batches(sentence)
 
     print("\nBatch processing completed successfully.")
