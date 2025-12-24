@@ -1,114 +1,130 @@
 ## === Refactored FSM-Based Spell Checker Code === ##
 import re
 
+# ========== Trie Implementation ========== #
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.is_end_of_word = False
+
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, word):
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                node.children[char] = TrieNode()
+            node = node.children[char]
+        node.is_end_of_word = True
+
+    def search(self, word):
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                return False
+            node = node.children[char]
+        return node.is_end_of_word
+
+# ========== FSM Implementation ========== #
 class FSM:
     def __init__(self, states, initial_state):
         self.states = states
         self.current_state = states[initial_state]
-        self.transition_log = []  # Logs transitions for the current input
-        self.all_logs = []  # Stores all logs across inputs
-        self.buffer = ""  # Accumulates letters to form the complete word
+        self.word = ""
 
-    def transition(self, next_state_name, word_or_letter):
-        current_state_name = self.current_state.__class__.__name__
-        self.transition_log.append(
-            f"Transition: {current_state_name} -> {next_state_name} | Input: '{word_or_letter}'"
-        )
+    def transition(self, next_state_name):
         self.current_state = self.states[next_state_name]
-        self.current_state.execute(word_or_letter)
+        self.current_state.execute(self.word)
 
-    def process_text_by_letter(self, text):
-        """
-        Process the input text letter by letter through the FSM.
-        :param text: The input string to process.
-        """
-        for index, char in enumerate(text):
-            print(f"[FSM]: Processing letter {index + 1}/{len(text)}: '{char}'")
-            self.buffer += char  # Accumulate letters into the buffer
+    def process_text_in_batches(self, text):
+        words = re.findall(r"\w+", text)
 
-            # Pass the current state and full buffer for validation
-            self.current_state.execute(self.buffer)
+        for word in words:
+            print(f"\n[FSM]: Processing word '{word}'")
+            self.word = word
+            self.current_state = self.states["Start"]
+            self.current_state.execute(word)
 
-    def print_transition_log(self):
-        """ Display the logged FSM transitions, then reset the log. """
-        print("\n[FSM LOG]")
-        for entry in self.transition_log:
-            print(entry)
-        print("[END LOG]\n")
-        self.all_logs.append(self.transition_log)  # Save current log for history
-        self.transition_log = []  # Clear the current log
-
-
+# ========== FSM States ========== #
 class State:
     def __init__(self, fsm):
         self.fsm = fsm
 
     def execute(self, word):
-        raise NotImplementedError()
-
+        raise NotImplementedError
 
 class StartState(State):
     def execute(self, word):
-        # Validate once we encounter a complete word (spaces/punctuation indicate word boundaries)
-        if self.is_complete_word(word):
-            print("[TRANSITION]: Start -> Validating")
-            clean_word = re.sub(r"[^\w’'-]", "", word.lower())
-            if clean_word in word_set:
-                self.fsm.transition("Valid", clean_word)  # Pass full, cleaned word to next state
-            else:
-                self.fsm.transition("Invalid", clean_word)
+        print("[TRANSITION]: Start -> Validating")
+        self.fsm.transition("Validating")
 
-    def is_complete_word(self, word):
-        # Check if the word ends with a space or punctuation
-        return bool(re.search(r"\s|[.!?]$", word))
+class ValidatingState(State):
+    def execute(self, word):
+        clean_word = word.lower()
 
+        if word_trie.search(clean_word):
+            self.fsm.transition("Valid")
+        else:
+            self.fsm.transition("Invalid")
 
 class ValidWordState(State):
     def execute(self, word):
-        # Ensure full word processing before marking it valid
-        if self.fsm.buffer.strip() == word.strip():  # Check buffer matches current word context
-            print(f"[STATE]: '{word.strip()}' is valid!\n")
-            self.fsm.buffer = ""  # Clear the buffer after full word validation
-
+        print("[STATE]: Entered ValidWordState")
+        print(f"[RESULT]: '{word}' is valid.")
+        self.fsm.current_state = self.fsm.states["Start"]
 
 class InvalidWordState(State):
     def execute(self, word):
-        print(f"[STATE]: '{word.strip()}' is invalid!\n")
-        self.fsm.buffer = ""  # Clear the buffer after validation
+        print("[STATE]: Entered InvalidWordState")
+        print(f"[RESULT]: '{word}' is invalid.")
+        self.fsm.current_state = self.fsm.states["Start"]
 
+# ========== Build Trie ========== #
+word_trie = Trie()
+for word in ["kumusta", "salamat", "araw"]:
+    word_trie.insert(word)
 
-# Test Words
-word_set = {"kumusta", "salamat", "araw"}
-
-
+# ========== FSM Test Helper ========== #
 def create_test_fsm():
     states = {
         "Start": StartState(None),
+        "Validating": ValidatingState(None),
         "Valid": ValidWordState(None),
         "Invalid": InvalidWordState(None),
     }
+
     fsm = FSM(states, "Start")
-    for state in fsm.states.values():
+
+    for state in states.values():
         state.fsm = fsm
+
     return fsm
 
-
-# Unit Tests
+# ========== Unit Tests ========== #
 def test_valid_word():
     fsm = create_test_fsm()
-    fsm.process_text_by_letter("kumusta ")
-    assert fsm.current_state.__class__.__name__ == "ValidWordState"
+    fsm.process_text_in_batches("kumusta")
+    assert fsm.current_state.__class__.__name__ == "StartState"
 
 def test_invalid_word():
     fsm = create_test_fsm()
-    fsm.process_text_by_letter("hello!")
-    assert fsm.current_state.__class__.__name__ == "InvalidWordState"
-
+    fsm.process_text_in_batches("hello")
+    assert fsm.current_state.__class__.__name__ == "StartState"
 
 if __name__ == "__main__":
     fsm = create_test_fsm()
 
-    # Run Unit Tests
+    # Test single words (original behavior)
+    print("\n[Word-by-Word Test]")
     test_valid_word()
     test_invalid_word()
+
+    # Test batch processing of full sentences
+    print("\n[Batch Processing Test]")
+    sentence = "kumusta hello araw salamat goodbye"
+    fsm.process_text_in_batches(sentence)
+
+    print("\nBatch processing completed successfully.")
     print("All tests passed!")
