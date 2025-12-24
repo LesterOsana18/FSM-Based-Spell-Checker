@@ -39,7 +39,7 @@ class FSM:
         self.current_state.execute(self.word)
 
     def process_text_in_batches(self, text):
-        words = re.findall(r"\w+", text)
+        words = re.findall(r"[a-zA-Zà-ÿ’'-]+", text.lower())
 
         for word in words:
             print(f"\n[FSM]: Processing word '{word}'")
@@ -83,8 +83,21 @@ class InvalidWordState(State):
 
 # ========== Build Trie ========== #
 word_trie = Trie()
-for word in ["kumusta", "salamat", "araw"]:
-    word_trie.insert(word)
+
+DICT_PATH = "filipino_dict.txt"
+
+try:
+    with open(DICT_PATH, encoding="utf-8") as file:
+        for line in file:
+            word = line.strip().lower()
+            if word:  # ignore blank lines
+                word_trie.insert(word)
+
+    print(f"[INFO]: Filipino dictionary loaded successfully.")
+
+except FileNotFoundError:
+    print(f"[ERROR]: '{DICT_PATH}' not found.")
+    exit(1)
 
 # ========== FSM Test Helper ========== #
 def create_test_fsm():
